@@ -1,14 +1,110 @@
-{% load static tailwind_tags %} {% load static %}
+{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} smartBuildHub {% endblock %}</title>
-    {% tailwind_css %}
-  </head>
-  <body>
-    <nav class="bg-red-500">this is nav</nav>
-    {% block content %} {% endblock %}
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %} smartBuildHub {% endblock %}</title>
+  {% tailwind_css %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+  <style>
+    {% comment %} .glassy {
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .dark .glassy {
+      background-color: rgba(17, 24, 39, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    } {% endcomment %}
+    .nav-link-hover:hover span:first-child {
+      color: rgb(251, 146, 60); /* orange-400 */
+    }
+    .nav-link-hover:hover span:last-child {
+      width: 100%;
+    }
+    .sign-in-hover:hover span:first-child {
+      color: #14142b;
+    }
+    .sign-in-hover:hover span:last-child {
+      transform: scaleX(100%);
+    }
+    .sign-up-hover:hover span:last-child {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-gray-800 dark:to-gray-900">
+  <!-- Navbar -->
+  <nav x-data="{ isOpen: false }" class="fixed w-full z-10 glassy">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo section -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="#" class="flex items-center">
+            <!-- Replace with your actual logo -->
+            <img class="h-16" src="{% static 'img/smartbuild_Logo_light.png' %}" alt="Logo">
+            <span class="ml-2 text-xl font-bold text-gray-800 dark:text-white">smartBuildHub</span>
+          </a>
+        </div>
+        
+        <!-- Navigation links - hidden on mobile -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-center space-x-4">
+            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          </div>
+        </div>
+        
+        <!-- Right side buttons -->
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6">
+            <a href="#" class="px-4 py-2 mr-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Sign In</a>
+            <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md">Sign Up</a>
+          </div>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="flex md:hidden">
+          <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none">
+            <svg :class="{'hidden': isOpen, 'block': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg :class="{'block': isOpen, 'hidden': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state -->
+    <div :class="{'block': isOpen, 'hidden': !isOpen}" class="md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 glassy">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Services</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Projects</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">About</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+        <div class="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center px-3">
+            <a href="#" class="block px-4 py-2 text-base font-medium text-gray-800 dark:text-white bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md w-full text-center mb-2">Sign In</a>
+          </div>
+          <div class="flex items-center px-3">
+            <a href="#" class="block px-4 py-2 text-base font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md w-full text-center">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-20 px-4">
+    {% block content %}{% endblock %}
+  </div>
+</body>
 </html>
