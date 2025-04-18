@@ -9,69 +9,169 @@
   {% tailwind_css %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
   <style>
-    {% comment %} .glassy {
+    /* Glassmorphism effect */
+    .glassy {
       backdrop-filter: blur(10px);
-      background-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: transparent;
+      -webkit-backdrop-filter: blur(10px); /* For Safari support */
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
     }
     .dark .glassy {
-      background-color: rgba(17, 24, 39, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    } {% endcomment %}
-    .nav-link-hover:hover span:first-child {
-      color: rgb(251, 146, 60); /* orange-400 */
+      background-color: black; /* Very light transparent layer */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      {% comment %} border-bottom: 1px solid rgba(255, 255, 255, 0.1); {% endcomment %}
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     }
-    .nav-link-hover:hover span:last-child {
+    
+    /* Navigation link animations */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(234, 179, 8); /* Yellow-500 */
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: rgb(234, 179, 8); /* Yellow-500 */
+    }
+    
+    .nav-link:hover::after {
       width: 100%;
     }
-    .sign-in-hover:hover span:first-child {
-      color: #14142b;
+    
+    /* Button animations */
+    .btn-signin {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      z-index: 1;
     }
-    .sign-in-hover:hover span:last-child {
-      transform: scaleX(100%);
+    
+    .btn-signin::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(234, 179, 8); /* Yellow-500 */
+      transition: all 0.3s ease;
+      z-index: -1;
     }
-    .sign-up-hover:hover span:last-child {
+    
+    .btn-signin:hover {
+      color: white;
+    }
+    
+    .btn-signin:hover::before {
+      left: 0;
+    }
+    
+    .btn-signup {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(234, 179, 8, 0.2);
+    }
+    
+    .btn-signup:hover {
+      box-shadow: 0 7px 14px rgba(234, 179, 8, 0.3);
+    }
+    
+    /* Logo animation */
+    .logo {
+      transition: all 0.5s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Mobile menu animations */
+    .mobile-menu-enter {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    
+    .mobile-menu-enter-active {
       opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .mobile-menu-exit {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .mobile-menu-exit-active {
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    /* Subtle page gradient animation */
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    .animated-gradient {
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
     }
   </style>
 </head>
-<body class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-gray-800 dark:to-gray-900">
+<body class="animated-gradient bg-gradient-to-r from-blue-50 via-blue-100 to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
   <!-- Navbar -->
-  <nav x-data="{ isOpen: false }" class="fixed w-full z-10 glassy">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+  <nav x-data="{ isOpen: false }" class="fixed w-full z-100 glassy transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
         <!-- Logo section -->
         <div class="flex-shrink-0 flex items-center">
           <a href="#" class="flex items-center">
-            <!-- Replace with your actual logo -->
-            <img class="h-16" src="{% static 'img/smartbuild_Logo_light.png' %}" alt="Logo">
-            <span class="ml-2 text-xl font-bold text-gray-800 dark:text-white">smartBuildHub</span>
+            <!-- Logo with hover animation -->
+            <img class="h-16 logo" src="{% static 'img/smartbuild_Logo_dark.png' %}" alt="Logo">
           </a>
         </div>
         
         <!-- Navigation links - hidden on mobile -->
         <div class="hidden md:block">
-          <div class="ml-10 flex items-center space-x-4">
-            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
-            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
-            <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          <div class="ml-10 flex items-center space-x-6">
+            <a href="#" class="nav-link text-gray-800 dark:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Home</a>
+            <a href="#" class="nav-link text-gray-800 dark:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Services</a>
+            <a href="#" class="nav-link text-gray-800 dark:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Projects</a>
+            <a href="#" class="nav-link text-gray-800 dark:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">About</a>
+            <a href="#" class="nav-link text-gray-800 dark:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Contact</a>
           </div>
         </div>
         
         <!-- Right side buttons -->
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-            <a href="#" class="px-4 py-2 mr-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Sign In</a>
-            <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md">Sign Up</a>
+            <a href="#" class="btn-signin px-4 py-2 mr-4 text-sm font-medium text-gray-800 dark:text-white border border-transparent hover:border-yellow-500 rounded-md transition-all duration-300">Sign In</a>
+            <a href="#" class="btn-signup px-4 py-2 text-sm font-medium text-gray-800 bg-yellow-500 hover:bg-yellow-400 rounded-md transition-all duration-300">Sign Up</a>
           </div>
         </div>
         
-        <!-- Mobile menu button -->
+        <!-- Mobile menu button with animation -->
         <div class="flex md:hidden">
-          <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none">
+          <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-all duration-300">
             <svg :class="{'hidden': isOpen, 'block': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -83,28 +183,50 @@
       </div>
     </div>
 
-    <!-- Mobile menu, show/hide based on menu state -->
-    <div :class="{'block': isOpen, 'hidden': !isOpen}" class="md:hidden">
+    <!-- Mobile menu with animation -->
+    <div 
+      x-show="isOpen" 
+      x-transition:enter="mobile-menu-enter" 
+      x-transition:enter-start="mobile-menu-enter" 
+      x-transition:enter-end="mobile-menu-enter-active" 
+      x-transition:leave="mobile-menu-exit" 
+      x-transition:leave-start="mobile-menu-exit" 
+      x-transition:leave-end="mobile-menu-exit-active" 
+      class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 glassy">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Services</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Projects</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">About</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">Home</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">Services</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">Projects</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">About</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">Contact</a>
         <div class="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
-          <div class="flex items-center px-3">
-            <a href="#" class="block px-4 py-2 text-base font-medium text-gray-800 dark:text-white bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md w-full text-center mb-2">Sign In</a>
+          <div class="flex items-center px-3 mb-3">
+            <a href="#" class="block px-4 py-2 text-base font-medium text-gray-800 dark:text-white bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md w-full text-center transition-all duration-300">Sign In</a>
           </div>
           <div class="flex items-center px-3">
-            <a href="#" class="block px-4 py-2 text-base font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md w-full text-center">Sign Up</a>
+            <a href="#" class="block px-4 py-2 text-base font-medium text-gray-800 bg-yellow-500 hover:bg-yellow-400 rounded-md w-full text-center transition-all duration-300">Sign Up</a>
           </div>
         </div>
       </div>
     </div>
   </nav>
 
-  <div class="pt-20 px-4">
+  <div class="pt-20">
     {% block content %}{% endblock %}
   </div>
+
+  <script>
+    // Navbar scroll animation
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 20) {
+        nav.classList.add('shadow-md');
+        nav.style.height = '70px';
+      } else {
+        nav.classList.remove('shadow-md');
+        nav.style.height = '80px';
+      }
+    });
+  </script>
 </body>
 </html>
