@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-+kn=lk5k9z0qmbx3)-2nvl!*pt@8svjf$micuecli!o6$45&_^
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['smartbuildhub-2.onrender.com', 'localhost', '127.0.0.1']
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
