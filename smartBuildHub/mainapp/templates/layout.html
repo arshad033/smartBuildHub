@@ -8,6 +8,7 @@
   <title>{% block title %} smartBuildHub {% endblock %}</title>
   {% tailwind_css %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
   <style>
     /* Glassmorphism effect */
     .glassy {
@@ -140,9 +141,246 @@
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
     }
+
+    {% comment %} service section style {% endcomment %}
+    /* Fade-in animation for the header */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Pulse animation for icons */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Slide-in animation for service cards */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    /* Hide elements initially */
+    .header-animate, .service-card {
+      opacity: 0;
+    }
+    
+    /* Apply animations when visible */
+    .header-animate.visible {
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+    
+    .service-card.visible {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+    
+    /* Staggered delays for service cards */
+    .service-card:nth-child(1).visible { animation-delay: 0.1s; }
+    .service-card:nth-child(2).visible { animation-delay: 0.3s; }
+    .service-card:nth-child(3).visible { animation-delay: 0.5s; }
+    .service-card:nth-child(4).visible { animation-delay: 0.7s; }
+    .service-card:nth-child(5).visible { animation-delay: 0.9s; }
+    .service-card:nth-child(6).visible { animation-delay: 1.1s; }
+    
+    .icon-container:hover {
+      animation: pulse 0.8s ease-in-out infinite;
+    }
+    
+    /* Animated underline effect for links */
+    .animated-link {
+      position: relative;
+    }
+    
+    .animated-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #f97316; /* orange-500 */
+      transition: width 0.3s ease;
+    }
+    
+    .animated-link:hover:after {
+      width: 100%;
+    }
+
+    /* Animation for projects section */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Hide elements initially */
+    .project-item {
+      opacity: 0;
+    }
+    
+    /* Apply animations when visible */
+    .project-item.visible {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    /* Staggered delays for project items */
+    .project-item:nth-child(1).visible { animation-delay: 0.1s; }
+    .project-item:nth-child(2).visible { animation-delay: 0.2s; }
+    .project-item:nth-child(3).visible { animation-delay: 0.3s; }
+    .project-item:nth-child(4).visible { animation-delay: 0.4s; }
+    .project-item:nth-child(5).visible { animation-delay: 0.5s; }
+    .project-item:nth-child(6).visible { animation-delay: 0.6s; }
+    
+    /* Header animation */
+    .header-content {
+      opacity: 0;
+    }
+    
+    .header-content.visible {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    //signin and signup
+    /* Animated background */
+    .bg-animate {
+      background: linear-gradient(135deg, #14142b, #1b1b3a, #14142b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Card hover effect */
+    .auth-card {
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .auth-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Input focus effect */
+    .input-effect {
+      position: relative;
+      margin-bottom: 30px;
+    }
+    
+    .input-effect input {
+      border: 0;
+      border-bottom: 2px solid #e2e8f0;
+      padding: 10px 0;
+      transition: all 0.3s ease;
+      background: transparent;
+      width: 100%;
+    }
+    
+    .input-effect input:focus {
+      outline: none;
+      border-bottom-color: #f97316;
+    }
+    
+    .input-effect label {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      font-size: 14px;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .input-effect input:focus ~ label,
+    .input-effect input:not(:placeholder-shown) ~ label {
+      top: -12px;
+      font-size: 12px;
+      color: #f97316;
+      font-weight: 500;
+    }
+    
+    /* Tab animation */
+    .tab-switch {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .tab-indicator {
+      height: 100%;
+      width: 50%;
+      background-color: #fff;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+      z-index: -1;
+    }
+    
+    .tab-indicator.right {
+      left: 50%;
+    }
+    
+    /* Slide animations */
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .slide-in-right {
+      animation: slideInRight 0.5s forwards;
+    }
+    
+    .slide-in-left {
+      animation: slideInLeft 0.5s forwards;
+    }
+    
+    /* Button hover effect */
+    .btn-hover-effect {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-hover-effect:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.6s ease;
+    }
+    
+    .btn-hover-effect:hover:before {
+      left: 100%;
+    }
+
+    {% comment %} //testimonial {% endcomment %}
+    .testimonial-hidden {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+    .testimonial-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
-<body class="animated-gradient bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
+<body class="animated-gradient bg-gradient-to-r from-gray-600 via-gray-700 to-gray-900">
   <!-- Navbar -->
   <nav id="mainNav" x-data="{ isOpen: false }" class="fixed w-full z-100 nav-transparent transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 sm:px-0 lg:px-0">
@@ -217,18 +455,12 @@
   </nav>
 
   <div>
-    {% block content %}{% endblock %}
+    {% block content %}
+    
+    {% endblock %}
   </div>
-
 <!-- Footer Section -->
-<footer class="mt-16 relative">
-  <!-- Top Wave Decoration with Animation -->
-  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
-    <svg class="relative block w-full h-12 animate-pulse" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-gray-800"></path>
-    </svg>
-  </div>
-
+<footer class="relative">
   <!-- Main Footer Content -->
   <div class="glassy pt-24 pb-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
@@ -433,7 +665,9 @@
         </ul>
       </div>
     </div>
-    
+    <div class="w-full bg-red-500 rounded-xl overflow-hidden">
+      <iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.2760848570415!2d80.99633347489663!3d26.958155058137162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bff2addd9b239%3A0xc21a9bbd557936ec!2sIntegral%20University!5e0!3m2!1sen!2sin!4v1745347042381!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
     <!-- Copyright Section -->
     <div class="border-t border-gray-700 pt-8 mt-12">
       <div class="flex flex-col md:flex-row justify-between items-center">
@@ -450,13 +684,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Bottom Wave Decoration with Animation -->
-<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
-  <svg class="relative block w-full h-12 animate-pulse" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-gray-900"></path>
-  </svg>
 </div>
 </footer>
 
@@ -481,6 +708,8 @@
         isMenuOpen: false
       });
     });
+
+    feather.replace();
   </script>
 </body>
 </html>
