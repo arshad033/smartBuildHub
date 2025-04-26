@@ -11,52 +11,120 @@
         <script>window.alert('{{m}}')</script>
     {% endfor %}
 {% endif %}
-
-<h1 class="mb-10">contact page</h1>
-<form class="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-lg space-y-6" method="POST">
-    {% csrf_token %}
-    <!-- Name -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Name</label>
-      <input type="text" id="name" name="name" maxlength="100" required
-        class="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
-    </div>
-  
-    <!-- Contact Number -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1" for="contactno">Contact Number</label>
-      <input type="text" id="contactno" name="contactno" maxlength="15" required
-        class="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
-    </div>
-  
-    <!-- Email -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Email</label>
-      <input type="email" id="email" name="email" maxlength="100" required
-        class="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
-    </div>
-  
-    <!-- Subject -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1" for="subject">Subject</label>
-      <input type="text" id="subject" name="subject" maxlength="200" required
-        class="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
-    </div>
-  
-    <!-- Message -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1" for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required
-        class="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"></textarea>
-    </div>
-  
-    <!-- Submit Button -->
-    <div>
-      <button type="submit"
-        class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300">
-        Submit Enquiry
-      </button>
-    </div>
-  </form>
-  
+ 
+<section id="contact" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+  <div class="container mx-auto px-6 md:px-16">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-up">
+              <h4 class="text-orange-400 font-semibold mb-4 flex items-center">
+                  <span class="mr-2 h-0.5 w-6 bg-orange-400"></span>
+                  GET IN TOUCH
+              </h4>
+              <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                  Ready to Start Your Project?
+              </h2>
+              <p class="text-gray-300 mb-8">
+                  Contact us today to discuss your construction needs. Our team is ready to help
+                  bring your vision to life with our expert services and dedication to excellence.
+              </p>
+              
+              <div class="space-y-6 mb-8">
+                  <div class="flex items-center">
+                      <div class="bg-orange-500/20 p-3 rounded-lg mr-4">
+                        <i data-feather="map-pin" class="h-6 w-6 text-orange-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Our Location</h4>
+                                <p class="text-gray-300">123 Construction Ave, Building City, 10001</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-orange-500/20 p-3 rounded-lg mr-4">
+                                <i data-feather="phone" class="h-6 w-6 text-orange-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Call Us</h4>
+                                <p class="text-gray-300">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-orange-500/20 p-3 rounded-lg mr-4">
+                                <i data-feather="mail" class="h-6 w-6 text-orange-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Email Us</h4>
+                                <p class="text-gray-300">info@constructioncompany.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-orange-500 hover:bg-orange-600 p-3 rounded-lg transition-all">
+                            <i data-feather="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="bg-orange-500 hover:bg-orange-600 p-3 rounded-lg transition-all">
+                            <i data-feather="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="bg-orange-500 hover:bg-orange-600 p-3 rounded-lg transition-all">
+                            <i data-feather="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="bg-orange-500 hover:bg-orange-600 p-3 rounded-lg transition-all">
+                            <i data-feather="linkedin" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="fade-up fade-delay-2">
+                        <form class="max-w-xl mx-auto p-6 bg-transparent bg-opacity-40 backdrop-blur-lg rounded-2xl shadow-xl space-y-6 border border-gray-200 mb-10" method="POST">
+                          {% csrf_token %}
+                          
+                          <!-- Name -->
+                          <div>
+                              <label class="block text-sm font-medium text-white mb-1" for="name">Name</label>
+                              <input type="text" id="name" name="name" maxlength="100" required
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                          </div>
+                      
+                          <!-- Contact Number -->
+                          <div>
+                              <label class="block text-sm font-medium text-white mb-1" for="contactno">Contact Number</label>
+                              <input type="text" id="contactno" name="contactno" maxlength="15" required
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                          </div>
+                      
+                          <!-- Email -->
+                          <div>
+                              <label class="block text-sm font-medium text-white mb-1" for="email">Email</label>
+                              <input type="email" id="email" name="email" maxlength="100" required
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                          </div>
+                      
+                          <!-- Subject -->
+                          <div>
+                              <label class="block text-sm font-medium text-white mb-1" for="subject">Subject</label>
+                              <input type="text" id="subject" name="subject" maxlength="200" required
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                          </div>
+                      
+                          <!-- Message -->
+                          <div>
+                              <label class="block text-sm font-medium text-white mb-1" for="message">Message</label>
+                              <textarea id="message" name="message" rows="5" required
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"></textarea>
+                          </div>
+                      
+                          <!-- Submit Button -->
+                          <div>
+                              <button type="submit"
+                                  class="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300">
+                                  Submit Enquiry
+                              </button>
+                          </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
