@@ -2,8 +2,410 @@
 {% load static tailwind_tags %}
 {% load static %}
 
-{% block title %} Home page {% endblock %}
+{% block title %} Service page {% endblock %}
 
 {% block content %}
-<h1>services page</h1>
+  <!-- Hero Section -->
+<header class="py-20 md:py-32 bg-gradient-to-r from-gray-50 to-orange-50 relative overflow-hidden">
+    <div class="absolute -top-96 -right-96 w-[800px] h-[800px] bg-orange-400 rounded-full opacity-5"></div>
+    <div class="absolute -bottom-96 -left-96 w-[800px] h-[800px] bg-orange-400 rounded-full opacity-5"></div>
+    
+    <div class="container mx-auto px-6 md:px-16 relative z-10">
+        <div class="max-w-4xl mx-auto text-center hero-animate">
+            <span class="inline-block px-4 py-2 rounded-full bg-orange-100 text-orange-600 font-medium text-sm mb-6">PROFESSIONAL CONSTRUCTION SERVICES</span>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+                Building <span class="text-orange-500">Excellence</span>,<br>
+                Crafting <span class="text-orange-500">Dreams</span>
+            </h1>
+            
+            <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                We offer comprehensive construction solutions tailored to your unique needs, 
+                delivered with exceptional craftsmanship and attention to every detail.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#services" class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all shadow-lg hover:shadow-orange-200 hover:shadow-xl">
+                    Explore Services
+                </a>
+                <a href="#contact" class="px-8 py-3 bg-white hover:bg-gray-100 text-gray-800 font-semibold rounded-lg transition-all shadow-lg border border-gray-200">
+                    Request a Quote
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Services Overview -->
+<section id="services" class="py-20">
+    <div class="container mx-auto px-6 md:px-16">
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+            <h4 class="text-orange-500 font-semibold mb-4 inline-flex items-center">
+                <span class="mr-2 h-0.5 w-6 bg-orange-500"></span>
+                OUR SERVICES
+                <span class="ml-2 h-0.5 w-6 bg-orange-500"></span>
+            </h4>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-white">
+                Comprehensive Construction Solutions
+            </h2>
+            <p class="text-gray-300">
+                We offer a wide range of construction services tailored to meet
+                the unique needs of each project, delivered with exceptional
+                craftsmanship and attention to detail.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-orange-500/20 featured-service fade-up fade-delay-1">
+                <div class="icon-container text-4xl mb-6 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-lg group-hover:bg-orange-500 transition-colors duration-300">
+                    <span class="group-hover:text-white transition-colors">🏠</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    Residential Construction
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    From custom homes to multi-family units, we build comfortable, energy-efficient residential spaces designed for modern living.
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Custom Home Building</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Multi-Family Housing</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Energy-Efficient Design</span>
+                    </li>
+                </ul>
+                <a href="#" class="inline-flex items-center text-orange-500 font-medium group-hover:text-orange-600">
+                    Learn More
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-orange-500/20 fade-up fade-delay-2">
+                <div class="icon-container text-4xl mb-6 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-lg group-hover:bg-orange-500 transition-colors duration-300">
+                    <span class="group-hover:text-white transition-colors">🏢</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    Commercial Buildings
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Office spaces, retail centers, and industrial facilities built to the highest standards of quality and functionality.
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Office Complexes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Retail & Hospitality</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Industrial Facilities</span>
+                    </li>
+                </ul>
+                <a href="#" class="inline-flex items-center text-orange-500 font-medium group-hover:text-orange-600">
+                    Learn More
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-orange-500/20 fade-up fade-delay-3">
+                <div class="icon-container text-4xl mb-6 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-lg group-hover:bg-orange-500 transition-colors duration-300">
+                    <span class="group-hover:text-white transition-colors">🎨</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    Interior Design
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Transform your space with our expert interior design services, creating environments that inspire and delight.
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Space Planning</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Custom Furnishings</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Material Selection</span>
+                    </li>
+                </ul>
+                <a href="#" class="inline-flex items-center text-orange-500 font-medium group-hover:text-orange-600">
+                    Learn More
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-orange-500/20 fade-up fade-delay-4">
+                <div class="icon-container text-4xl mb-6 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-lg group-hover:bg-orange-500 transition-colors duration-300">
+                    <span class="group-hover:text-white transition-colors">🔨</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    Renovation & Remodeling
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Breathe new life into existing structures with our comprehensive renovation and remodeling services.
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Kitchen & Bath Remodels</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Historic Renovations</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Commercial Retrofits</span>
+                    </li>
+                </ul>
+                <a href="#" class="inline-flex items-center text-orange-500 font-medium group-hover:text-orange-600">
+                    Learn More
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-orange-500/20 fade-up fade-delay-5">
+                <div class="icon-container text-4xl mb-6 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-lg group-hover:bg-orange-500 transition-colors duration-300">
+                    <span class="group-hover:text-white transition-colors">📐</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    Architectural Design
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Innovative architectural solutions that balance aesthetics, functionality, and sustainability.
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Concept Development</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>3D Visualization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Sustainable Design</span>
+                    </li>
+                </ul>
+                <a href="#" class="inline-flex items-center text-orange-500 font-medium group-hover:text-orange-600">
+                    Learn More
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-orange-500/20 fade-up fade-delay-6">
+                <div class="icon-container text-4xl mb-6 bg-orange-100 w-20 h-20 flex items-center justify-center rounded-lg group-hover:bg-orange-500 transition-colors duration-300">
+                    <span class="group-hover:text-white transition-colors">📋</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                    Construction Management
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Expert oversight of your project from concept to completion, ensuring efficiency and quality at every stage.
+                </p>
+                <ul class="space-y-2 mb-6 text-gray-600">
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Project Planning</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Budget Management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check" class="h-5 w-5 text-orange-500 mr-2 mt-0.5"></i>
+                        <span>Quality Control</span>
+                    </li>
+                </ul>
+                <a href="#" class="inline-flex items-center text-orange-500 font-medium group-hover:text-orange-600">
+                    Learn More
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Service Highlight -->
+<section class="py-24 bg-gradient-to-b from-white to-orange-50 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-gray-50 to-transparent"></div>
+    <div class="container mx-auto px-6 md:px-16">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 fade-up fade-delay-1">
+                <h4 class="text-orange-500 font-semibold mb-4 flex items-center">
+                    <span class="mr-2 h-0.5 w-6 bg-orange-500"></span>
+                    FEATURED SERVICE
+                </h4>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                    Sustainable Building Practices
+                </h2>
+                <p class="text-gray-600 mb-8">
+                    We're committed to environmentally responsible construction. Our sustainable building practices 
+                    incorporate the latest green technologies and materials to minimize environmental impact 
+                    while maximizing energy efficiency and occupant comfort.
+                </p>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 p-2 rounded-lg mr-4">
+                            <i data-feather="sun" class="h-6 w-6 text-orange-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-1">Energy Efficiency</h4>
+                            <p class="text-gray-600 text-sm">Solar integration and passive design strategies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 p-2 rounded-lg mr-4">
+                            <i data-feather="droplet" class="h-6 w-6 text-orange-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-1">Water Conservation</h4>
+                            <p class="text-gray-600 text-sm">Rainwater harvesting and low-flow fixtures</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 p-2 rounded-lg mr-4">
+                            <i data-feather="refresh-cw" class="h-6 w-6 text-orange-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-1">Recycled Materials</h4>
+                            <p class="text-gray-600 text-sm">Responsibly sourced and eco-friendly building materials</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-all">
+                    Learn About Our Green Initiatives
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+            
+            <div class="order-1 md:order-2 fade-up fade-delay-2">
+                <div class="relative">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
+                        <img src="{% static 'img/projects/Sustainable-Community-Center.jpg' %}" alt="Sustainable Building Practices" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center space-x-2">
+                            <div class="bg-green-500 rounded-full w-4 h-4"></div>
+                            <span class="font-semibold text-gray-800">LEED Certified</span>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center space-x-2">
+                            <i data-feather="award" class="h-5 w-5 text-orange-500"></i>
+                            <span class="font-semibold text-gray-800">Award Winning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How We Work Process -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-6 md:px-16">
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+            <h4 class="text-orange-500 font-semibold mb-4 inline-flex items-center">
+                <span class="mr-2 h-0.5 w-6 bg-orange-500"></span>
+                OUR PROCESS
+                <span class="ml-2 h-0.5 w-6 bg-orange-500"></span>
+            </h4>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                How We Bring Your Vision to Life
+            </h2>
+            <p class="text-gray-600">
+                We follow a proven methodology to ensure your project is completed on time, 
+                within budget, and exceeds your expectations.
+            </p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-8">
+            <div class="bg-gray-50 rounded-xl p-8 text-center flex-1 relative fade-up fade-delay-1">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                    1
+                </div>
+                <div class="icon-container mx-auto bg-orange-100 w-16 h-16 flex items-center justify-center rounded-full mb-6">
+                    <i data-feather="coffee" class="h-8 w-8 text-orange-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Consultation</h3>
+                <p class="text-gray-600">We discuss your vision, requirements, and expectations to establish project scope.</p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-8 text-center flex-1 relative fade-up fade-delay-2">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                    2
+                </div>
+                <div class="icon-container mx-auto bg-orange-100 w-16 h-16 flex items-center justify-center rounded-full mb-6">
+                    <i data-feather="edit" class="h-8 w-8 text-orange-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Design & Planning</h3>
+                <p class="text-gray-600">Our architects and designers create detailed plans based on your requirements.</p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-8 text-center flex-1 relative fade-up fade-delay-3">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                    3
+                </div>
+                <div class="icon-container mx-auto bg-orange-100 w-16 h-16 flex items-center justify-center rounded-full mb-6">
+                    <i data-feather="tool" class="h-8 w-8 text-orange-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Construction</h3>
+                <p class="text-gray-600">Our skilled teams execute the project with precision and quality craftsmanship.</p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-8 text-center flex-1 relative fade-up fade-delay-4">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                    4
+                </div>
+                <div class="icon-container mx-auto bg-orange-100 w-16 h-16 flex items-center justify-center rounded-full mb-6">
+                    <i data-feather="check-circle" class="h-8 w-8 text-orange-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Completion</h3>
+                <p class="text-gray-600">Final inspections ensure everything meets our high standards before handover.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script>
+        // Initialize feather icons
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 {% endblock %}
