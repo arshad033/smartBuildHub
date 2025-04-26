@@ -9,458 +9,92 @@
   {% tailwind_css %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
-  <style>
-    /* Glassmorphism effect */
-    .glassy {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px); /* For Safari support */
-      background-color: rgba(17, 24, 39, 0.75); /* Dark background with opacity */
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-    }
-    
-    /* Transparent navbar */
-    .nav-transparent {
-      background-color: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-    
-    /* Navigation link animations */
-    .nav-link {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: orange;
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover {
-      color: orange; 
-    }
-    
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    /* Button animations */
-    .btn-signin {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      z-index: 1;
-    }
-    
-    .btn-signin::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background-color: var(--color-orange-500);
-      transition: all 0.3s ease;
-      z-index: -1;
-    }
-    
-    .btn-signin:hover {
-      color: white;
-    }
-    
-    .btn-signin:hover::before {
-      left: 0;
-    }
-    
-    .btn-signup {
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(234, 179, 8, 0.2);
-    }
-    
-    .btn-signup:hover {
-      box-shadow: 0 7px 14px rgba(234, 179, 8, 0.3);
-    }
-    
-    /* Logo animation */
-    .logo {
-      transition: all 0.5s ease;
-    }
-    
-    .logo:hover {
-      transform: scale(1.05);
-    }
-    
-    /* Mobile menu animations */
-    .mobile-menu-enter {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    
-    .mobile-menu-enter-active {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    
-    .mobile-menu-exit {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .mobile-menu-exit-active {
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    
-    /* Mobile menu background */
-    .mobile-menu-bg {
-      background-color: rgba(17, 24, 39, 0.95);
-    }
-    
-    /* Subtle page gradient animation */
-    @keyframes gradientAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-    
-    .animated-gradient {
-      background-size: 400% 400%;
-      animation: gradientAnimation 15s ease infinite;
-    }
-
-    {% comment %} service section style {% endcomment %}
-    /* Fade-in animation for the header */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Pulse animation for icons */
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    /* Slide-in animation for service cards */
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    /* Hide elements initially */
-    .header-animate, .service-card {
-      opacity: 0;
-    }
-    
-    /* Apply animations when visible */
-    .header-animate.visible {
-      animation: fadeIn 1.2s ease-out forwards;
-    }
-    
-    .service-card.visible {
-      animation: slideIn 0.8s ease-out forwards;
-    }
-    
-    /* Staggered delays for service cards */
-    .service-card:nth-child(1).visible { animation-delay: 0.1s; }
-    .service-card:nth-child(2).visible { animation-delay: 0.3s; }
-    .service-card:nth-child(3).visible { animation-delay: 0.5s; }
-    .service-card:nth-child(4).visible { animation-delay: 0.7s; }
-    .service-card:nth-child(5).visible { animation-delay: 0.9s; }
-    .service-card:nth-child(6).visible { animation-delay: 1.1s; }
-    
-    .icon-container:hover {
-      animation: pulse 0.8s ease-in-out infinite;
-    }
-    
-    /* Animated underline effect for links */
-    .animated-link {
-      position: relative;
-    }
-    
-    .animated-link:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background-color: #f97316; /* orange-500 */
-      transition: width 0.3s ease;
-    }
-    
-    .animated-link:hover:after {
-      width: 100%;
-    }
-
-    /* Animation for projects section */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Hide elements initially */
-    .project-item {
-      opacity: 0;
-    }
-    
-    /* Apply animations when visible */
-    .project-item.visible {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-    
-    /* Staggered delays for project items */
-    .project-item:nth-child(1).visible { animation-delay: 0.1s; }
-    .project-item:nth-child(2).visible { animation-delay: 0.2s; }
-    .project-item:nth-child(3).visible { animation-delay: 0.3s; }
-    .project-item:nth-child(4).visible { animation-delay: 0.4s; }
-    .project-item:nth-child(5).visible { animation-delay: 0.5s; }
-    .project-item:nth-child(6).visible { animation-delay: 0.6s; }
-    
-    /* Header animation */
-    .header-content {
-      opacity: 0;
-    }
-    
-    .header-content.visible {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    //signin and signup
-    /* Animated background */
-    .bg-animate {
-      background: linear-gradient(135deg, #14142b, #1b1b3a, #14142b);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-    
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    /* Card hover effect */
-    .auth-card {
-      transition: all 0.3s ease;
-      transform: translateY(0);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .auth-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Input focus effect */
-    .input-effect {
-      position: relative;
-      margin-bottom: 30px;
-    }
-    
-    .input-effect input {
-      border: 0;
-      border-bottom: 2px solid #e2e8f0;
-      padding: 10px 0;
-      transition: all 0.3s ease;
-      background: transparent;
-      width: 100%;
-    }
-    
-    .input-effect input:focus {
-      outline: none;
-      border-bottom-color: #f97316;
-    }
-    
-    .input-effect label {
-      position: absolute;
-      top: 10px;
-      left: 0;
-      font-size: 14px;
-      color: #94a3b8;
-      transition: all 0.3s ease;
-      pointer-events: none;
-    }
-    
-    .input-effect input:focus ~ label,
-    .input-effect input:not(:placeholder-shown) ~ label {
-      top: -12px;
-      font-size: 12px;
-      color: #f97316;
-      font-weight: 500;
-    }
-    
-    /* Tab animation */
-    .tab-switch {
-      position: relative;
-      z-index: 10;
-    }
-    
-    .tab-indicator {
-      height: 100%;
-      width: 50%;
-      background-color: #fff;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      border-radius: 12px;
-      transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-      z-index: -1;
-    }
-    
-    .tab-indicator.right {
-      left: 50%;
-    }
-    
-    /* Slide animations */
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    .slide-in-right {
-      animation: slideInRight 0.5s forwards;
-    }
-    
-    .slide-in-left {
-      animation: slideInLeft 0.5s forwards;
-    }
-    
-    /* Button hover effect */
-    .btn-hover-effect {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-hover-effect:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: all 0.6s ease;
-    }
-    
-    .btn-hover-effect:hover:before {
-      left: 100%;
-    }
-
-    {% comment %} //testimonial {% endcomment %}
-    .testimonial-hidden {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
-    }
-    .testimonial-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body class="animated-gradient bg-gradient-to-r from-gray-600 via-gray-700 to-gray-900">
+
   <!-- Navbar -->
-  <nav id="mainNav" x-data="{ isOpen: false }" class="fixed w-full z-100 nav-transparent transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 sm:px-0 lg:px-0">
-      <div class="flex items-center justify-between h-20">
-        <!-- Logo section -->
-        <div class="flex-shrink-0 flex items-center">
-          <a href="#" class="flex items-center">
-            <!-- Logo with hover animation -->
-            <img class="h-16 logo" src="{% static 'img/smartbuild_Logo_dark.png' %}" alt="Logo">
-          </a>
-        </div>
-        
-        <!-- Navigation links - hidden on mobile -->
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-center space-x-6">
-            <a href="#" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Home</a>
-            <a href="#" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Services</a>
-            <a href="#" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Projects</a>
-            <a href="#" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">About</a>
-            <a href="#" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Contact</a>
+  <header class="h-20 w-full animated-gradient bg-gradient-to-r from-gray-900 via-gray-900 to-gray-900">
+    <nav id="mainNav" x-data="{ isOpen: false }" class="fixed w-full z-100 nav-transparent transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-6 sm:px-0 lg:px-0">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo section -->
+          <div class="flex-shrink-0 flex items-center">
+            <a href="#" class="flex items-center">
+              <!-- Logo with hover animation -->
+              <img class="h-16 logo" src="{% static 'img/smartbuild_Logo_dark.png' %}" alt="Logo">
+            </a>
           </div>
-        </div>
-        
-        <!-- Right side buttons -->
-        <div class="hidden md:block">
-          <div class="ml-4 flex items-center md:ml-6">
-            <a href="#" class="btn-signin px-4 py-2 mr-4 text-sm font-medium text-white border border-transparent hover:border-orange-500 rounded-md transition-all duration-300">Sign In</a>
-            <a href="#" class="btn-signup px-4 py-2 text-sm font-medium text-white bg-orange-400 hover:bg-orange-500 rounded-md transition-all duration-300">Sign Up</a>
+          
+          <!-- Navigation links - hidden on mobile -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-center space-x-6">
+              <a href="/" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Home</a>
+              <a href="/services/" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Services</a>
+              <a href="/project/" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Projects</a>
+              <a href="/about/" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">About</a>
+              <a href="/contact/" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Contact</a>
+            </div>
           </div>
-        </div>
-        
-        <!-- Mobile menu button with animation -->
-        <div class="flex md:hidden">
-          <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-200 hover:bg-gray-700 focus:outline-none transition-all duration-300">
-            <svg :class="{'hidden': isOpen, 'block': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg :class="{'block': isOpen, 'hidden': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile menu with animation -->
-    <div 
-      x-show="isOpen" 
-      x-transition:enter="mobile-menu-enter" 
-      x-transition:enter-start="mobile-menu-enter" 
-      x-transition:enter-end="mobile-menu-enter-active" 
-      x-transition:leave="mobile-menu-exit" 
-      x-transition:leave-start="mobile-menu-exit" 
-      x-transition:leave-end="mobile-menu-exit-active" 
-      class="md:hidden mobile-menu-bg">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Home</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Services</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Projects</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">About</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Contact</a>
-        <div class="pt-4 pb-3 border-t border-gray-700">
-          <div class="flex items-center px-3 mb-3">
-            <a href="#" class="block px-4 py-2 text-base font-medium text-white bg-gray-700 hover:bg-gray-600 rounded-md w-full text-center transition-all duration-300">Sign In</a>
+          
+          <!-- Right side buttons -->
+          <div class="hidden md:block">
+            <div class="ml-4 flex items-center md:ml-6">
+              <a href="" class="btn-signin px-4 py-2 mr-4 text-sm font-medium text-white border border-transparent hover:border-orange-500 rounded-md transition-all duration-300">Sign In</a>
+              <a href="#" class="btn-signup px-4 py-2 text-sm font-medium text-white bg-orange-400 hover:bg-orange-500 rounded-md transition-all duration-300">Sign Up</a>
+            </div>
           </div>
-          <div class="flex items-center px-3">
-            <a href="#" class="block px-4 py-2 text-base font-medium text-white bg-orange-400 hover:bg-orange-500 rounded-md w-full text-center transition-all duration-300">Sign Up</a>
+          
+          <!-- Mobile menu button with animation -->
+          <div class="flex md:hidden">
+            <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-200 hover:bg-gray-700 focus:outline-none transition-all duration-300">
+              <svg :class="{'hidden': isOpen, 'block': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg :class="{'block': isOpen, 'hidden': !isOpen }" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
+  
+      <!-- Mobile menu with animation -->
+      <div 
+        x-show="isOpen" 
+        x-transition:enter="mobile-menu-enter" 
+        x-transition:enter-start="mobile-menu-enter" 
+        x-transition:enter-end="mobile-menu-enter-active" 
+        x-transition:leave="mobile-menu-exit" 
+        x-transition:leave-start="mobile-menu-exit" 
+        x-transition:leave-end="mobile-menu-exit-active" 
+        class="md:hidden mobile-menu-bg">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Home</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Services</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Projects</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">About</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-orange-400 transition-all duration-300">Contact</a>
+          <div class="pt-4 pb-3 border-t border-gray-700">
+            <div class="flex items-center px-3 mb-3">
+              <a href="#" class="block px-4 py-2 text-base font-medium text-white bg-gray-700 hover:bg-gray-600 rounded-md w-full text-center transition-all duration-300">Sign In</a>
+            </div>
+            <div class="flex items-center px-3">
+              <a href="#" class="block px-4 py-2 text-base font-medium text-white bg-orange-400 hover:bg-orange-500 rounded-md w-full text-center transition-all duration-300">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-  <div>
+  <main class="min-h-screen">
     {% block content %}
-    
     {% endblock %}
-  </div>
+  </main>
+  
 <!-- Footer Section -->
-<footer class="relative">
+  <footer class="relative">
   <!-- Main Footer Content -->
   <div class="glassy pt-24 pb-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
@@ -683,9 +317,7 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-</footer>
+  </footer>
 
   <script>
     // Navbar scroll animation

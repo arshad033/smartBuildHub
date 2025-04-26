@@ -5,184 +5,236 @@
 {% block title %} Home page {% endblock %}
 
 {% block content %}
+{% if messages %}
+    {% for m in messages %}
+        <script>window.alert('{{m}}')</script>
+    {% endfor %}
+{% endif %}
+
+
     {% comment %} signin and signup {% endcomment %}
-<div class="auth-card bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full flex flex-col md:flex-row">
-    <!-- Left side - Image/Banner -->
-    <div class="w-full md:w-1/2 bg-gradient-to-br from-orange-500 to-orange-700 p-8 flex flex-col justify-between relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-full h-full opacity-10">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
-          <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="white" stroke-width="0.5"></path>
-          <path d="M0,50 L100,50" stroke="white" stroke-width="0.5"></path>
-          <path d="M50,0 L50,100" stroke="white" stroke-width="0.5"></path>
-        </svg>
-      </div>
-      
-      <div class="relative z-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Build Your Future</h2>
-        <p class="text-white text-opacity-90">Join our platform to access exclusive construction services and project management tools.</p>
-      </div>
-      
-      <div class="relative z-10 mt-12">
-        <div class="flex items-center mb-6">
-          <div class="bg-white bg-opacity-20 rounded-full p-2 mr-4">
-            <i data-feather="shield" class="text-white h-6 w-6"></i>
-          </div>
-          <div>
-            <h4 class="text-white font-semibold">Secure Access</h4>
-            <p class="text-white text-opacity-80 text-sm">Your data is always protected</p>
-          </div>
+    <div class="auth-card bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full flex flex-col md:flex-row">
+      <!-- Left side - Image/Banner -->
+      <div class="w-full md:w-1/2 bg-gradient-to-br from-orange-500 to-orange-700 p-8 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
+            <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="white" stroke-width="0.5"></path>
+            <path d="M0,50 L100,50" stroke="white" stroke-width="0.5"></path>
+            <path d="M50,0 L50,100" stroke="white" stroke-width="0.5"></path>
+          </svg>
         </div>
         
-        <div class="flex items-center">
-          <div class="bg-white bg-opacity-20 rounded-full p-2 mr-4">
-            <i data-feather="clock" class="text-white h-6 w-6"></i>
+        <div class="relative z-10">
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Build Your Future</h2>
+          <p class="text-white text-opacity-90">Join our platform to access exclusive construction services and project management tools.</p>
+        </div>
+        
+        <div class="relative z-10 mt-12">
+          <div class="flex items-center mb-6">
+            <div class="bg-white bg-opacity-20 rounded-full p-2 mr-4">
+              <i data-feather="shield" class="text-white h-6 w-6"></i>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold">Secure Access</h4>
+              <p class="text-white text-opacity-80 text-sm">Your data is always protected</p>
+            </div>
           </div>
-          <div>
-            <h4 class="text-white font-semibold">Quick Setup</h4>
-            <p class="text-white text-opacity-80 text-sm">Get started in less than 2 minutes</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Right side - Auth Forms -->
-    <div class="w-full md:w-1/2 p-8">
-      <!-- Tabs -->
-      <div class="mb-8 relative tab-switch">
-        <div class="tab-indicator" id="tab-indicator"></div>
-        <div class="grid grid-cols-2 gap-4 bg-gray-100 p-1 rounded-xl">
-          <button id="signin-tab" class="py-3 px-5 rounded-xl font-medium text-gray-800 focus:outline-none relative z-10 text-center" onclick="switchTab('signin')">Sign In</button>
-          <button id="signup-tab" class="py-3 px-5 rounded-xl font-medium text-gray-500 focus:outline-none relative z-10 text-center" onclick="switchTab('signup')">Sign Up</button>
-        </div>
-      </div>
-      
-      <!-- Sign In Form -->
-      <div id="signin-form" class="slide-in-left">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6">Welcome Back</h3>
-        
-        <div class="input-effect">
-          <input type="email" id="signin-email" placeholder=" " class="focus:ring-0" />
-          <label for="signin-email">Email Address</label>
-        </div>
-        
-        <div class="input-effect">
-          <input type="password" id="signin-password" placeholder=" " class="focus:ring-0" />
-          <label for="signin-password">Password</label>
-        </div>
-        
-        <div class="flex justify-between items-center mb-6">
+          
           <div class="flex items-center">
-            <input type="checkbox" id="remember-me" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded" />
-            <label for="remember-me" class="ml-2 text-sm text-gray-600">Remember me</label>
-          </div>
-          <a href="#" class="text-sm text-orange-500 hover:text-orange-600 font-medium">Forgot password?</a>
-        </div>
-        
-        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-xl transition-all btn-hover-effect">
-          Sign In
-        </button>
-        
-        <div class="mt-8">
-          <div class="relative flex items-center">
-            <div class="flex-grow border-t border-gray-200"></div>
-            <span class="flex-shrink mx-4 text-gray-400 text-sm">Or continue with</span>
-            <div class="flex-grow border-t border-gray-200"></div>
-          </div>
-          
-          <div class="flex space-x-4 mt-6">
-            <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#4285F4">
-                <path d="M10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0ZM10 18C5.582 18 2 14.418 2 10C2 5.582 5.582 2 10 2C14.418 2 18 5.582 18 10C18 14.418 14.418 18 10 18Z"/>
-                <path d="M14.5 8H10V10H14.5C14.5 12.5 12.5 14.5 10 14.5C7.5 14.5 5.5 12.5 5.5 10C5.5 7.5 7.5 5.5 10 5.5C11.25 5.5 12.4 6 13.2 6.8L15 5C13.7 3.7 11.9 3 10 3C6.1 3 3 6.1 3 10C3 13.9 6.1 17 10 17C13.9 17 17 13.9 17 10V8H14.5Z"/>
-              </svg>
-            </button>
-            <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#1877F2">
-                <path d="M20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 14.991 3.657 19.128 8.438 19.878V12.891H5.898V10H8.438V7.797C8.438 5.291 9.93 3.906 12.215 3.906C13.309 3.906 14.453 4.102 14.453 4.102V6.562H13.193C11.95 6.562 11.563 7.333 11.563 8.124V10H14.336L13.893 12.891H11.563V19.878C16.343 19.128 20 14.991 20 10Z"/>
-              </svg>
-            </button>
-            <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000000">
-                <path d="M17.6177 10.4092C17.6177 9.82309 17.5673 9.25837 17.4584 8.71436H10V11.5493H14.2891C14.1009 12.4911 13.5672 13.2949 12.7637 13.8298V15.7131H15.2528C16.7823 14.3153 17.6177 12.5227 17.6177 10.4092Z"/>
-                <path d="M10 18C12.43 18 14.4673 17.2545 15.2527 15.7131L12.7636 13.8298C12.0091 14.3182 11.0345 14.6136 10 14.6136C7.87364 14.6136 6.07273 13.214 5.54545 11.3345H2.96364V13.2791C3.74545 16.1764 6.61818 18 10 18Z"/>
-                <path d="M5.54545 11.3345C5.37727 10.8309 5.28182 10.2927 5.28182 9.74545C5.28182 9.19818 5.37727 8.66 5.54545 8.15636V6.21182H2.96364C2.35455 7.31727 2 8.48909 2 9.74545C2 11.0018 2.35455 12.1736 2.96364 13.2791L5.54545 11.3345Z"/>
-                <path d="M10 4.87727C11.2855 4.87727 12.4436 5.34091 13.3527 6.20909L15.5582 4.00364C14.4582 3.01455 12.4309 2 10 2C6.61818 2 3.74545 3.82364 2.96364 6.72091L5.54545 8.66545C6.07273 6.78591 7.87364 4.87727 10 4.87727Z"/>
-              </svg>
-            </button>
+            <div class="bg-white bg-opacity-20 rounded-full p-2 mr-4">
+              <i data-feather="clock" class="text-white h-6 w-6"></i>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold">Quick Setup</h4>
+              <p class="text-white text-opacity-80 text-sm">Get started in less than 2 minutes</p>
+            </div>
           </div>
         </div>
       </div>
       
-      <!-- Sign Up Form -->
-      <div id="signup-form" class="hidden">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6">Create Account</h3>
+      <!-- Right side - Auth Forms -->
+      <div class="w-full md:w-1/2 p-8">
+        <!-- Tabs -->
+        <div class="mb-8 relative tab-switch">
+          <div class="tab-indicator" id="tab-indicator"></div>
+          <div class="grid grid-cols-2 gap-4 bg-gray-100 p-1 rounded-xl">
+            <button id="signin-tab" class="py-3 px-5 rounded-xl font-medium text-gray-800 focus:outline-none relative z-10 text-center" onclick="switchTab('signin')">Sign In</button>
+            <button id="signup-tab" class="py-3 px-5 rounded-xl font-medium text-gray-500 focus:outline-none relative z-10 text-center" onclick="switchTab('signup')">Sign Up</button>
+          </div>
+        </div>
         
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <!-- Sign In Form -->
+       <form action="{% url 'logcode' %}" method="post">
+        {% csrf_token %}
+        <div id="signin-form" class="slide-in-left">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Welcome Back</h3>
+          
           <div class="input-effect">
-            <input type="text" id="first-name" placeholder=" " class="focus:ring-0" />
-            <label for="first-name">First Name</label>
+            <input type="text" name="username" id="signin-email" placeholder=" " class="focus:ring-0" />
+            <label for="signin-email">Email Address</label>
           </div>
           
           <div class="input-effect">
-            <input type="text" id="last-name" placeholder=" " class="focus:ring-0" />
-            <label for="last-name">Last Name</label>
-          </div>
-        </div>
-        
-        <div class="input-effect">
-          <input type="email" id="signup-email" placeholder=" " class="focus:ring-0" />
-          <label for="signup-email">Email Address</label>
-        </div>
-        
-        <div class="input-effect">
-          <input type="password" id="signup-password" placeholder=" " class="focus:ring-0" />
-          <label for="signup-password">Password</label>
-        </div>
-        
-        <div class="flex items-start mb-6">
-          <div class="flex items-center h-5">
-            <input id="terms" type="checkbox" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded" />
-          </div>
-          <div class="ml-3 text-sm">
-            <label for="terms" class="text-gray-600">I agree to the <a href="#" class="text-orange-500 hover:text-orange-600 font-medium">Terms of Service</a> and <a href="#" class="text-orange-500 hover:text-orange-600 font-medium">Privacy Policy</a></label>
-          </div>
-        </div>
-        
-        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-xl transition-all btn-hover-effect">
-          Create Account
-        </button>
-        
-        <div class="mt-8">
-          <div class="relative flex items-center">
-            <div class="flex-grow border-t border-gray-200"></div>
-            <span class="flex-shrink mx-4 text-gray-400 text-sm">Or sign up with</span>
-            <div class="flex-grow border-t border-gray-200"></div>
+            <input type="password" name="password" id="signin-password" placeholder=" " class="focus:ring-0" />
+            <label for="signin-password">Password</label>
           </div>
           
-          <div class="flex space-x-4 mt-6">
-            <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#4285F4">
-                <path d="M10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0ZM10 18C5.582 18 2 14.418 2 10C2 5.582 5.582 2 10 2C14.418 2 18 5.582 18 10C18 14.418 14.418 18 10 18Z"/>
-                <path d="M14.5 8H10V10H14.5C14.5 12.5 12.5 14.5 10 14.5C7.5 14.5 5.5 12.5 5.5 10C5.5 7.5 7.5 5.5 10 5.5C11.25 5.5 12.4 6 13.2 6.8L15 5C13.7 3.7 11.9 3 10 3C6.1 3 3 6.1 3 10C3 13.9 6.1 17 10 17C13.9 17 17 13.9 17 10V8H14.5Z"/>
-              </svg>
-            </button>
-            <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#1877F2">
-                <path d="M20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 14.991 3.657 19.128 8.438 19.878V12.891H5.898V10H8.438V7.797C8.438 5.291 9.93 3.906 12.215 3.906C13.309 3.906 14.453 4.102 14.453 4.102V6.562H13.193C11.95 6.562 11.563 7.333 11.563 8.124V10H14.336L13.893 12.891H11.563V19.878C16.343 19.128 20 14.991 20 10Z"/>
-              </svg>
-            </button>
-            <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000000">
-                <path d="M17.6177 10.4092C17.6177 9.82309 17.5673 9.25837 17.4584 8.71436H10V11.5493H14.2891C14.1009 12.4911 13.5672 13.2949 12.7637 13.8298V15.7131H15.2528C16.7823 14.3153 17.6177 12.5227 17.6177 10.4092Z"/>
-                <path d="M10 18C12.43 18 14.4673 17.2545 15.2527 15.7131L12.7636 13.8298C12.0091 14.3182 11.0345 14.6136 10 14.6136C7.87364 14.6136 6.07273 13.214 5.54545 11.3345H2.96364V13.2791C3.74545 16.1764 6.61818 18 10 18Z"/>
-                <path d="M5.54545 11.3345C5.37727 10.8309 5.28182 10.2927 5.28182 9.74545C5.28182 9.19818 5.37727 8.66 5.54545 8.15636V6.21182H2.96364C2.35455 7.31727 2 8.48909 2 9.74545C2 11.0018 2.35455 12.1736 2.96364 13.2791L5.54545 11.3345Z"/>
-                <path d="M10 4.87727C11.2855 4.87727 12.4436 5.34091 13.3527 6.20909L15.5582 4.00364C14.4582 3.01455 12.4309 2 10 2C6.61818 2 3.74545 3.82364 2.96364 6.72091L5.54545 8.66545C6.07273 6.78591 7.87364 4.87727 10 4.87727Z"/>
-              </svg>
-            </button>
+          <div class="flex justify-between items-center mb-6">
+            <div class="flex items-center">
+              <input type="checkbox" id="remember-me" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded" />
+              <label for="remember-me" class="ml-2 text-sm text-gray-600">Remember me</label>
+            </div>
+            <a href="#" class="text-sm text-orange-500 hover:text-orange-600 font-medium">Forgot password?</a>
+          </div>
+          
+          <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-xl transition-all btn-hover-effect" type="submit">
+            Sign In
+          </button>
+          
+          <div class="mt-8">
+            <div class="relative flex items-center">
+              <div class="flex-grow border-t border-gray-200"></div>
+              <span class="flex-shrink mx-4 text-gray-400 text-sm">Or continue with</span>
+              <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+            
+            <div class="flex space-x-4 mt-6">
+              <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#4285F4">
+                  <path d="M10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0ZM10 18C5.582 18 2 14.418 2 10C2 5.582 5.582 2 10 2C14.418 2 18 5.582 18 10C18 14.418 14.418 18 10 18Z"/>
+                  <path d="M14.5 8H10V10H14.5C14.5 12.5 12.5 14.5 10 14.5C7.5 14.5 5.5 12.5 5.5 10C5.5 7.5 7.5 5.5 10 5.5C11.25 5.5 12.4 6 13.2 6.8L15 5C13.7 3.7 11.9 3 10 3C6.1 3 3 6.1 3 10C3 13.9 6.1 17 10 17C13.9 17 17 13.9 17 10V8H14.5Z"/>
+                </svg>
+              </button>
+              <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#1877F2">
+                  <path d="M20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 14.991 3.657 19.128 8.438 19.878V12.891H5.898V10H8.438V7.797C8.438 5.291 9.93 3.906 12.215 3.906C13.309 3.906 14.453 4.102 14.453 4.102V6.562H13.193C11.95 6.562 11.563 7.333 11.563 8.124V10H14.336L13.893 12.891H11.563V19.878C16.343 19.128 20 14.991 20 10Z"/>
+                </svg>
+              </button>
+              <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000000">
+                  <path d="M17.6177 10.4092C17.6177 9.82309 17.5673 9.25837 17.4584 8.71436H10V11.5493H14.2891C14.1009 12.4911 13.5672 13.2949 12.7637 13.8298V15.7131H15.2528C16.7823 14.3153 17.6177 12.5227 17.6177 10.4092Z"/>
+                  <path d="M10 18C12.43 18 14.4673 17.2545 15.2527 15.7131L12.7636 13.8298C12.0091 14.3182 11.0345 14.6136 10 14.6136C7.87364 14.6136 6.07273 13.214 5.54545 11.3345H2.96364V13.2791C3.74545 16.1764 6.61818 18 10 18Z"/>
+                  <path d="M5.54545 11.3345C5.37727 10.8309 5.28182 10.2927 5.28182 9.74545C5.28182 9.19818 5.37727 8.66 5.54545 8.15636V6.21182H2.96364C2.35455 7.31727 2 8.48909 2 9.74545C2 11.0018 2.35455 12.1736 2.96364 13.2791L5.54545 11.3345Z"/>
+                  <path d="M10 4.87727C11.2855 4.87727 12.4436 5.34091 13.3527 6.20909L15.5582 4.00364C14.4582 3.01455 12.4309 2 10 2C6.61818 2 3.74545 3.82364 2.96364 6.72091L5.54545 8.66545C6.07273 6.78591 7.87364 4.87727 10 4.87727Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+       </form>
+        
+        <!-- Sign Up Form -->
+        <div id="signup-form" class="hidden">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Create Account</h3>
+          
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="input-effect">
+              <input type="text" id="first-name" placeholder=" " class="focus:ring-0" />
+              <label for="first-name">First Name</label>
+            </div>
+            
+            <div class="input-effect">
+              <input type="text" id="last-name" placeholder=" " class="focus:ring-0" />
+              <label for="last-name">Last Name</label>
+            </div>
+          </div>
+          
+          <div class="input-effect">
+            <input type="email" id="signup-email" placeholder=" " class="focus:ring-0" />
+            <label for="signup-email">Email Address</label>
+          </div>
+          
+          <div class="input-effect">
+            <input type="password" id="signup-password" placeholder=" " class="focus:ring-0" />
+            <label for="signup-password">Password</label>
+          </div>
+          
+          <div class="flex items-start mb-6">
+            <div class="flex items-center h-5">
+              <input id="terms" type="checkbox" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded" />
+            </div>
+            <div class="ml-3 text-sm">
+              <label for="terms" class="text-gray-600">I agree to the <a href="#" class="text-orange-500 hover:text-orange-600 font-medium">Terms of Service</a> and <a href="#" class="text-orange-500 hover:text-orange-600 font-medium">Privacy Policy</a></label>
+            </div>
+          </div>
+          
+          <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-xl transition-all btn-hover-effect">
+            Create Account
+          </button>
+          
+          <div class="mt-8">
+            <div class="relative flex items-center">
+              <div class="flex-grow border-t border-gray-200"></div>
+              <span class="flex-shrink mx-4 text-gray-400 text-sm">Or sign up with</span>
+              <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+            
+            <div class="flex space-x-4 mt-6">
+              <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#4285F4">
+                  <path d="M10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20C15.523 20 20 15.523 20 10C20 4.477 15.523 0 10 0ZM10 18C5.582 18 2 14.418 2 10C2 5.582 5.582 2 10 2C14.418 2 18 5.582 18 10C18 14.418 14.418 18 10 18Z"/>
+                  <path d="M14.5 8H10V10H14.5C14.5 12.5 12.5 14.5 10 14.5C7.5 14.5 5.5 12.5 5.5 10C5.5 7.5 7.5 5.5 10 5.5C11.25 5.5 12.4 6 13.2 6.8L15 5C13.7 3.7 11.9 3 10 3C6.1 3 3 6.1 3 10C3 13.9 6.1 17 10 17C13.9 17 17 13.9 17 10V8H14.5Z"/>
+                </svg>
+              </button>
+              <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#1877F2">
+                  <path d="M20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 14.991 3.657 19.128 8.438 19.878V12.891H5.898V10H8.438V7.797C8.438 5.291 9.93 3.906 12.215 3.906C13.309 3.906 14.453 4.102 14.453 4.102V6.562H13.193C11.95 6.562 11.563 7.333 11.563 8.124V10H14.336L13.893 12.891H11.563V19.878C16.343 19.128 20 14.991 20 10Z"/>
+                </svg>
+              </button>
+              <button class="flex-1 border border-gray-300 hover:border-gray-400 py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#000000">
+                  <path d="M17.6177 10.4092C17.6177 9.82309 17.5673 9.25837 17.4584 8.71436H10V11.5493H14.2891C14.1009 12.4911 13.5672 13.2949 12.7637 13.8298V15.7131H15.2528C16.7823 14.3153 17.6177 12.5227 17.6177 10.4092Z"/>
+                  <path d="M10 18C12.43 18 14.4673 17.2545 15.2527 15.7131L12.7636 13.8298C12.0091 14.3182 11.0345 14.6136 10 14.6136C7.87364 14.6136 6.07273 13.214 5.54545 11.3345H2.96364V13.2791C3.74545 16.1764 6.61818 18 10 18Z"/>
+                  <path d="M5.54545 11.3345C5.37727 10.8309 5.28182 10.2927 5.28182 9.74545C5.28182 9.19818 5.37727 8.66 5.54545 8.15636V6.21182H2.96364C2.35455 7.31727 2 8.48909 2 9.74545C2 11.0018 2.35455 12.1736 2.96364 13.2791L5.54545 11.3345Z"/>
+                  <path d="M10 4.87727C11.2855 4.87727 12.4436 5.34091 13.3527 6.20909L15.5582 4.00364C14.4582 3.01455 12.4309 2 10 2C6.61818 2 3.74545 3.82364 2.96364 6.72091L5.54545 8.66545C6.07273 6.78591 7.87364 4.87727 10 4.87727Z"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-</html>
+
+  <script>
+    //signin and signup
+ // Tab switching functionality
+ function switchTab(tab) {
+  // Update tab indicator position
+  const indicator = document.getElementById('tab-indicator');
+  if (tab === 'signin') {
+    indicator.classList.remove('right');
+    document.getElementById('signin-tab').classList.add('text-gray-800');
+    document.getElementById('signin-tab').classList.remove('text-gray-500');
+    document.getElementById('signup-tab').classList.add('text-gray-500');
+    document.getElementById('signup-tab').classList.remove('text-gray-800');
+  } else {
+    indicator.classList.add('right');
+    document.getElementById('signup-tab').classList.add('text-gray-800');
+    document.getElementById('signup-tab').classList.remove('text-gray-500');
+    document.getElementById('signin-tab').classList.add('text-gray-500');
+    document.getElementById('signin-tab').classList.remove('text-gray-800');
+  }
+  
+  // Show/hide appropriate form
+  const signinForm = document.getElementById('signin-form');
+  const signupForm = document.getElementById('signup-form');
+  
+  if (tab === 'signin') {
+    signupForm.classList.add('hidden');
+    signinForm.classList.remove('hidden');
+    signinForm.classList.remove('slide-in-left');
+    signinForm.classList.remove('slide-in-right');
+    void signinForm.offsetWidth; // Force reflow
+    signinForm.classList.add('slide-in-left');
+  } else {
+    signinForm.classList.add('hidden');
+    signupForm.classList.remove('hidden');
+    signupForm.classList.remove('slide-in-left');
+    signupForm.classList.remove('slide-in-right');
+    void signupForm.offsetWidth; // Force reflow
+    signupForm.classList.add('slide-in-right');
+  }
+}
+
+  </script>
+{% endblock %}
