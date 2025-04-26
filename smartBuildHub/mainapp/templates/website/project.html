@@ -2,8 +2,233 @@
 {% load static tailwind_tags %}
 {% load static %}
 
-{% block title %} Home page {% endblock %}
+{% block title %}Our Projects Portfolio{% endblock %}
 
 {% block content %}
-<h1>project page</h1>
+<!-- Hero Section with Counters -->
+<header class="py-16 md:py-40 bg-[#0d0d1f] relative overflow-hidden">
+    <div class="container mx-auto px-6 md:px-16">
+        <div class="max-w-3xl animate-fadeIn opacity-0">
+            <h4 class="text-orange-500 font-semibold mb-4 flex items-center">
+                <span class="mr-2 h-0.5 w-6 bg-orange-500"></span>
+                EXCELLENCE IN CONSTRUCTION
+            </h4>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">Our Featured Projects</h1>
+            <p class="text-gray-300 text-lg mb-8">
+                Browse our portfolio of exceptional construction projects spanning commercial, residential, 
+                and public sectors. Each project reflects our commitment to quality and innovation.
+            </p>
+        </div>
+        
+        <!-- Statistics Counter Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mt-12 animate-fadeIn opacity-0 delay-200">
+            <div class="counter-item bg-[#1a1a36] p-6 rounded-lg text-center">
+                <h3 class="text-3xl md:text-4xl font-bold text-orange-500">
+                    <span class="counter" data-target="250">0</span>+
+                </h3>
+                <p class="text-gray-300 mt-2 text-sm md:text-base">Projects Completed</p>
+            </div>
+            
+            <div class="counter-item bg-[#1a1a36] p-6 rounded-lg text-center">
+                <h3 class="text-3xl md:text-4xl font-bold text-orange-500">
+                    <span class="counter" data-target="30">0</span>+
+                </h3>
+                <p class="text-gray-300 mt-2 text-sm md:text-base">Years Experience</p>
+            </div>
+            
+            <div class="counter-item bg-[#1a1a36] p-6 rounded-lg text-center">
+                <h3 class="text-3xl md:text-4xl font-bold text-orange-500">
+                    <span class="counter" data-target="120">0</span>+
+                </h3>
+                <p class="text-gray-300 mt-2 text-sm md:text-base">Expert Team Members</p>
+            </div>
+            
+            <div class="counter-item bg-[#1a1a36] p-6 rounded-lg text-center">
+                <h3 class="text-3xl md:text-4xl font-bold text-orange-500">
+                    <span class="counter" data-target="98">0</span>%
+                </h3>
+                <p class="text-gray-300 mt-2 text-sm md:text-base">Client Satisfaction</p>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#14142b] to-transparent"></div>
+</header>
+
+<!-- Projects Grid -->
+<section class="pb-24 pt-24">
+    <div class="container mx-auto px-6 md:px-16">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="project-item animate-fadeIn opacity-0 delay-300 relative rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="{% static 'img/projects/Modern-Office-Complex.jpg' %}" alt="Modern Office Complex" class="project-image w-full h-full object-cover transition-transform duration-700" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="text-orange-500 text-sm font-semibold mb-2 block">Commercial</span>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Modern Office Complex</h3>
+                    <p class="text-gray-300 text-sm mb-4 max-w-xs">A contemporary office space designed for maximum productivity and employee wellbeing.</p>
+                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-orange-300 transition-colors">
+                        View Project
+                        <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-item animate-fadeIn opacity-0 delay-400 relative rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="{% static 'img/projects/Luxury-Residential-Tower.jpg' %}" alt="Luxury Residential Tower" class="project-image w-full h-full object-cover transition-transform duration-700" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="text-orange-500 text-sm font-semibold mb-2 block">Residential</span>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Luxury Residential Tower</h3>
+                    <p class="text-gray-300 text-sm mb-4 max-w-xs">Premium living spaces with state-of-the-art amenities and stunning city views.</p>
+                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-orange-300 transition-colors">
+                        View Project
+                        <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-item animate-fadeIn opacity-0 delay-500 relative rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="{% static 'img/projects/Sustainable-Community-Center.jpg' %}" alt="Sustainable Community Center" class="project-image w-full h-full object-cover transition-transform duration-700" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="text-orange-500 text-sm font-semibold mb-2 block">Public</span>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Sustainable Community Center</h3>
+                    <p class="text-gray-300 text-sm mb-4 max-w-xs">Eco-friendly architecture designed to bring communities together.</p>
+                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-orange-300 transition-colors">
+                        View Project
+                        <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-item animate-fadeIn opacity-0 delay-300 relative rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="{% static 'img/projects/Industrial-Manufacturing-Hub.jpg' %}" alt="Industrial Manufacturing Hub" class="project-image w-full h-full object-cover transition-transform duration-700" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="text-orange-500 text-sm font-semibold mb-2 block">Industrial</span>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Industrial Manufacturing Hub</h3>
+                    <p class="text-gray-300 text-sm mb-4 max-w-xs">Cutting-edge industrial facilities designed for optimal workflow and efficiency.</p>
+                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-orange-300 transition-colors">
+                        View Project
+                        <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-item animate-fadeIn opacity-0 delay-400 relative rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="{% static 'img/projects/Waterfront-Hotel-Spa.jpg' %}" alt="Waterfront Hotel & Spa" class="project-image w-full h-full object-cover transition-transform duration-700" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="text-orange-500 text-sm font-semibold mb-2 block">Hospitality</span>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Waterfront Hotel & Spa</h3>
+                    <p class="text-gray-300 text-sm mb-4 max-w-xs">Luxury hospitality project featuring elegant design and premium guest experiences.</p>
+                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-orange-300 transition-colors">
+                        View Project
+                        <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-item animate-fadeIn opacity-0 delay-500 relative rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="{% static 'img/projects/Urban-Mixed-Use-Development.jpg' %}" alt="Urban Mixed-Use Development" class="project-image w-full h-full object-cover transition-transform duration-700" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="text-orange-500 text-sm font-semibold mb-2 block">Mixed-Use</span>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">Urban Mixed-Use Development</h3>
+                    <p class="text-gray-300 text-sm mb-4 max-w-xs">Integrated commercial and residential spaces designed for modern urban living.</p>
+                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-orange-300 transition-colors">
+                        View Project
+                        <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 bg-[#0d0d1f]">
+    <div class="container mx-auto px-6 md:px-16 text-center">
+        <div class="max-w-2xl mx-auto animate-fadeIn opacity-0 delay-600">
+            <h2 class="text-3xl font-bold mb-6 text-white">Ready to Build Your Dream Project?</h2>
+            <p class="text-gray-300 mb-8">Let's discuss how our expertise can bring your vision to life. Contact our team today.</p>
+            <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 rounded-lg transition-colors">
+                Get In Touch
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Initialize Feather Icons
+    document.addEventListener('DOMContentLoaded', () => {
+        feather.replace();
+        
+        // Reveal animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    
+                    // Start counter animation if counters are visible
+                    if (entry.target.querySelectorAll('.counter').length > 0) {
+                        startCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animate-fadeIn').forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Counter animation function
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; // The lower the number, the faster the animation
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                
+                // Only start if not already counted
+                if (counter.innerText === '0') {
+                    const updateCount = () => {
+                        const increment = target / speed;
+                        count = Math.ceil(count + increment);
+                        
+                        // If we've reached or exceeded the target, set the final value
+                        if (count >= target) {
+                            counter.innerText = target;
+                            return;
+                        }
+                        
+                        // Otherwise update the counter and continue
+                        counter.innerText = count;
+                        setTimeout(updateCount, 1);
+                    };
+                    
+                    updateCount();
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
