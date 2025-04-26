@@ -53,15 +53,15 @@
         <!-- Stats Floating Bar -->
         <div class="mt-16 bg-white/5 backdrop-blur-lg p-6 rounded-xl border border-white/10 grid grid-cols-1 md:grid-cols-3 gap-8 transform transition-all duration-1000 delay-300 opacity-0 translate-y-10" id="stats-bar">
           <div class="text-center">
-            <h3 class="text-3xl font-bold text-orange-500 mb-2">25+</h3>
+            <h3 class="text-3xl font-bold text-orange-500 mb-2">30+</h3>
             <p class="text-white">Years Experience</p>
           </div>
           <div class="text-center">
-            <h3 class="text-3xl font-bold text-orange-500 mb-2">500+</h3>
+            <h3 class="text-3xl font-bold text-orange-500 mb-2">250+</h3>
             <p class="text-white">Projects Completed</p>
           </div>
           <div class="text-center">
-            <h3 class="text-3xl font-bold text-orange-500 mb-2">100%</h3>
+            <h3 class="text-3xl font-bold text-orange-500 mb-2">98%</h3>
             <p class="text-white">Client Satisfaction</p>
           </div>
         </div>
@@ -898,199 +898,174 @@
       </div>
     </div>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Animate on load
-    setTimeout(() => {
-      document.getElementById('hero-content')?.classList.remove('opacity-0', 'translate-y-10');
-    }, 300);
-    setTimeout(() => {
-      document.getElementById('stats-bar')?.classList.remove('opacity-0', 'translate-y-10');
-    }, 600);
-
-    // Observer for scroll-based animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('opacity-0', 'translate-y-10', '-translate-x-10', 'translate-x-10');
-          entry.target.classList.add('opacity-100', 'translate-y-0');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    // All elements to animate on scroll
-    const elementsToAnimate = [
-      '#about-image', '#about-text',
-      '#how-works-header', '#step-1', '#step-2', '#step-3', '#step-4',
-      '#features-header', '#feature-1', '#feature-2', '#feature-3'
-    ];
-
-    elementsToAnimate.forEach(id => {
-      const el = document.querySelector(id);
-      if (el) {
-        el.classList.add('opacity-0', 'translate-y-10'); // Set initial state
-        observer.observe(el);
-      }
-    });
-  });
-   //for service section 
-     // Intersection Observer for scroll animations
-     document.addEventListener('DOMContentLoaded', function() {
-      // Function to check if element is in viewport
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          // Add 'visible' class when element enters viewport
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Once animation is triggered, no need to observe anymore
-            observer.unobserve(entry.target);
+      document.addEventListener("DOMContentLoaded", () => {
+        // Animate on load
+        setTimeout(() => {
+          document.getElementById("hero-content")?.classList.remove("opacity-0", "translate-y-10");
+        }, 300);
+        setTimeout(() => {
+          document.getElementById("stats-bar")?.classList.remove("opacity-0", "translate-y-10");
+        }, 600);
+    
+        // Observer for scroll-based animation
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-10", "-translate-x-10", "translate-x-10");
+              entry.target.classList.add("opacity-100", "translate-y-0");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+    
+        const elementsToAnimate = [
+          "#about-image", "#about-text",
+          "#how-works-header", "#step-1", "#step-2", "#step-3", "#step-4",
+          "#features-header", "#feature-1", "#feature-2", "#feature-3"
+        ];
+    
+        elementsToAnimate.forEach(id => {
+          const el = document.querySelector(id);
+          if (el) {
+            el.classList.add("opacity-0", "translate-y-10");
+            observer.observe(el);
           }
         });
-      }, {
-        root: null, // viewport
-        threshold: 0.1, // 10% of the element must be visible
-        rootMargin: '0px 0px -100px 0px' // trigger slightly before element is fully visible
+    
+        // Service Section Animation
+        const serviceObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              serviceObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0.1,
+          rootMargin: "0px 0px -100px 0px"
+        });
+    
+        const serviceHeader = document.querySelector(".header-animate");
+        if (serviceHeader) serviceObserver.observe(serviceHeader);
+    
+        document.querySelectorAll(".service-card").forEach(card => {
+          serviceObserver.observe(card);
+        });
+    
+        // Project Section Animation
+        const projectObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              projectObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0.1,
+          rootMargin: "0px 0px -100px 0px"
+        });
+    
+        const projectHeader = document.querySelector(".header-content");
+        if (projectHeader) projectObserver.observe(projectHeader);
+    
+        document.querySelectorAll(".project-item").forEach(item => {
+          projectObserver.observe(item);
+        });
       });
-      
-      // Observe header
-      const header = document.querySelector('.header-animate');
-      observer.observe(header);
-      
-      // Observe all service cards
-      const serviceCards = document.querySelectorAll('.service-card');
-      serviceCards.forEach(card => {
-        observer.observe(card);
-      });
-    });
-// project Section
- // Intersection Observer for scroll animations
- document.addEventListener('DOMContentLoaded', function() {
-  // Function to check if element is in viewport
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // Add 'visible' class when element enters viewport
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Once animation is triggered, no need to observe anymore
-        observer.unobserve(entry.target);
+    
+      // Signin and Signup Tab Switch
+      function switchTab(tab) {
+        const indicator = document.getElementById("tab-indicator");
+    
+        if (tab === "signin") {
+          indicator.classList.remove("right");
+          document.getElementById("signin-tab").classList.add("text-gray-800");
+          document.getElementById("signin-tab").classList.remove("text-gray-500");
+          document.getElementById("signup-tab").classList.add("text-gray-500");
+          document.getElementById("signup-tab").classList.remove("text-gray-800");
+        } else {
+          indicator.classList.add("right");
+          document.getElementById("signup-tab").classList.add("text-gray-800");
+          document.getElementById("signup-tab").classList.remove("text-gray-500");
+          document.getElementById("signin-tab").classList.add("text-gray-500");
+          document.getElementById("signin-tab").classList.remove("text-gray-800");
+        }
+    
+        const signinForm = document.getElementById("signin-form");
+        const signupForm = document.getElementById("signup-form");
+    
+        if (tab === "signin") {
+          signupForm.classList.add("hidden");
+          signinForm.classList.remove("hidden", "slide-in-left", "slide-in-right");
+          void signinForm.offsetWidth;
+          signinForm.classList.add("slide-in-left");
+        } else {
+          signinForm.classList.add("hidden");
+          signupForm.classList.remove("hidden", "slide-in-left", "slide-in-right");
+          void signupForm.offsetWidth;
+          signupForm.classList.add("slide-in-right");
+        }
       }
-    });
-  }, {
-    root: null, // viewport
-    threshold: 0.1, // 10% of the element must be visible
-    rootMargin: '0px 0px -100px 0px' // trigger slightly before element is fully visible
-  });
-  
-  // Observe header content
-  const header = document.querySelector('.header-content');
-  observer.observe(header);
-  
-  // Observe all project items
-  const projectItems = document.querySelectorAll('.project-item');
-  projectItems.forEach(item => {
-    observer.observe(item);
-  });
-});
-
-//signin and signup
- // Tab switching functionality
- function switchTab(tab) {
-  // Update tab indicator position
-  const indicator = document.getElementById('tab-indicator');
-  if (tab === 'signin') {
-    indicator.classList.remove('right');
-    document.getElementById('signin-tab').classList.add('text-gray-800');
-    document.getElementById('signin-tab').classList.remove('text-gray-500');
-    document.getElementById('signup-tab').classList.add('text-gray-500');
-    document.getElementById('signup-tab').classList.remove('text-gray-800');
-  } else {
-    indicator.classList.add('right');
-    document.getElementById('signup-tab').classList.add('text-gray-800');
-    document.getElementById('signup-tab').classList.remove('text-gray-500');
-    document.getElementById('signin-tab').classList.add('text-gray-500');
-    document.getElementById('signin-tab').classList.remove('text-gray-800');
-  }
-  
-  // Show/hide appropriate form
-  const signinForm = document.getElementById('signin-form');
-  const signupForm = document.getElementById('signup-form');
-  
-  if (tab === 'signin') {
-    signupForm.classList.add('hidden');
-    signinForm.classList.remove('hidden');
-    signinForm.classList.remove('slide-in-left');
-    signinForm.classList.remove('slide-in-right');
-    void signinForm.offsetWidth; // Force reflow
-    signinForm.classList.add('slide-in-left');
-  } else {
-    signinForm.classList.add('hidden');
-    signupForm.classList.remove('hidden');
-    signupForm.classList.remove('slide-in-left');
-    signupForm.classList.remove('slide-in-right');
-    void signupForm.offsetWidth; // Force reflow
-    signupForm.classList.add('slide-in-right');
-  }
-}
-
-//testimonial section
-const testimonials = [
-{
-  name: "Sarah Johnson",
-  position: "Property Developer",
-  quote: "Working with this construction team was a fantastic experience. Their attention to detail and commitment to quality exceeded our expectations. They completed our project on time and within budget.",
-  avatar: "https://media.istockphoto.com/id/1833394225/photo/businessman-smiling-in-a-meeting-at-the-office.jpg?s=612x612&w=0&k=20&c=Hmt5obbmDOMiIVWG6ftnr_0F6KgvBFQRBhXSELu9IyM="
-},
-{
-  name: "Michael Thompson",
-  position: "Business Owner",
-  quote: "I'm extremely impressed with the professionalism and expertise demonstrated throughout our office building project. The team was responsive, transparent, and delivered exceptional results.",
-  avatar: "https://media.istockphoto.com/id/1833394225/photo/businessman-smiling-in-a-meeting-at-the-office.jpg?s=612x612&w=0&k=20&c=Hmt5obbmDOMiIVWG6ftnr_0F6KgvBFQRBhXSELu9IyM="
-},
-{
-  name: "Emily Rodriguez",
-  position: "Homeowner",
-  quote: "Our home renovation was handled with such care and precision. The team listened to our needs, offered creative solutions, and transformed our space beyond what we could have imagined.",
-  avatar: "https://media.istockphoto.com/id/1833394225/photo/businessman-smiling-in-a-meeting-at-the-office.jpg?s=612x612&w=0&k=20&c=Hmt5obbmDOMiIVWG6ftnr_0F6KgvBFQRBhXSELu9IyM="
-}
-];
-
-const container = document.getElementById("testimonial-grid");
-
-testimonials.forEach((t, index) => {
-const div = document.createElement("div");
-div.className = `bg-gray-50 p-8 rounded-xl border border-gray-100 hover:border-orange-500/20 hover:shadow-xl transition-all relative group testimonial-hidden`;
-div.style.transitionDelay = `${index * 150}ms`;
-div.innerHTML = `
-  <div class="absolute top-8 right-8 text-4xl text-orange-300 opacity-20 group-hover:opacity-40 transition-opacity">"</div>
-  <div class="flex items-center space-x-1 mb-4 text-orange-500">
-    ${[...Array(5)].map(() => `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.962 1.464 8.299-7.4-4.188-7.4 4.188 1.464-8.299-6.064-5.962 8.332-1.151z"/></svg>`).join('')}
-  </div>
-  <p class="text-gray-600 mb-6 relative z-10">"${t.quote}"</p>
-  <div class="flex items-center">
-    <img src="${t.avatar}" alt="${t.name}" class="w-12 h-12 rounded-full object-cover border-2 border-orange-500"/>
-    <div class="ml-4">
-      <h4 class="font-bold text-gray-800">${t.name}</h4>
-      <p class="text-sm text-gray-500">${t.position}</p>
-    </div>
-  </div>
-`;
-container.appendChild(div);
-});
-
-// Visibility Animation on Scroll
-function revealTestimonials() {
-document.querySelectorAll(".testimonial-hidden").forEach((el) => {
-  const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight - 100) {
-    el.classList.remove("testimonial-hidden");
-    el.classList.add("testimonial-visible");
-  }
-});
-}
-
-window.addEventListener("scroll", revealTestimonials);
-window.addEventListener("load", revealTestimonials);
-
+    
+      // Testimonials Section
+      const testimonials = [
+        {
+          name: "Sarah Johnson",
+          position: "Property Developer",
+          quote: "Working with this construction team was a fantastic experience. Their attention to detail and commitment to quality exceeded our expectations. They completed our project on time and within budget.",
+          avatar: "https://media.istockphoto.com/id/1833394225/photo/businessman-smiling-in-a-meeting-at-the-office.jpg?s=612x612&w=0&k=20&c=Hmt5obbmDOMiIVWG6ftnr_0F6KgvBFQRBhXSELu9IyM="
+        },
+        {
+          name: "Michael Thompson",
+          position: "Business Owner",
+          quote: "I'm extremely impressed with the professionalism and expertise demonstrated throughout our office building project. The team was responsive, transparent, and delivered exceptional results.",
+          avatar: "https://media.istockphoto.com/id/1833394225/photo/businessman-smiling-in-a-meeting-at-the-office.jpg?s=612x612&w=0&k=20&c=Hmt5obbmDOMiIVWG6ftnr_0F6KgvBFQRBhXSELu9IyM="
+        },
+        {
+          name: "Emily Rodriguez",
+          position: "Homeowner",
+          quote: "Our home renovation was handled with such care and precision. The team listened to our needs, offered creative solutions, and transformed our space beyond what we could have imagined.",
+          avatar: "https://media.istockphoto.com/id/1833394225/photo/businessman-smiling-in-a-meeting-at-the-office.jpg?s=612x612&w=0&k=20&c=Hmt5obbmDOMiIVWG6ftnr_0F6KgvBFQRBhXSELu9IyM="
+        }
+      ];
+    
+      const container = document.getElementById("testimonial-grid");
+    
+      testimonials.forEach((t, index) => {
+        const div = document.createElement("div");
+        div.className = "bg-gray-50 p-8 rounded-xl border border-gray-100 hover:border-orange-500/20 hover:shadow-xl transition-all relative group testimonial-hidden";
+        div.style.transitionDelay = `${index * 150}ms`;
+        div.innerHTML = `
+          <div class="absolute top-8 right-8 text-4xl text-orange-300 opacity-20 group-hover:opacity-40 transition-opacity">"</div>
+          <div class="flex items-center space-x-1 mb-4 text-orange-500">
+            ${[...Array(5)].map(() => `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.962 1.464 8.299-7.4-4.188-7.4 4.188 1.464-8.299-6.064-5.962 8.332-1.151z"/></svg>`).join('')}
+          </div>
+          <p class="text-gray-600 mb-6 relative z-10">"${t.quote}"</p>
+          <div class="flex items-center">
+            <img src="${t.avatar}" alt="${t.name}" class="w-12 h-12 rounded-full object-cover border-2 border-orange-500"/>
+            <div class="ml-4">
+              <h4 class="font-bold text-gray-800">${t.name}</h4>
+              <p class="text-sm text-gray-500">${t.position}</p>
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    
+      function revealTestimonials() {
+        document.querySelectorAll(".testimonial-hidden").forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            el.classList.remove("testimonial-hidden");
+            el.classList.add("testimonial-visible");
+          }
+        });
+      }
+    
+      window.addEventListener("scroll", revealTestimonials);
+      window.addEventListener("load", revealTestimonials);
 </script>
 
 {% endblock %}
