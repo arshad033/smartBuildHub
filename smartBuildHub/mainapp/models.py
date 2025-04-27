@@ -13,3 +13,4 @@ class LoginInfo(models.Model):
     usertype = models.CharField(max_length=20)
     username = models.CharField(max_length=100,unique=True)
     password = models.CharField(max_length=256)
+

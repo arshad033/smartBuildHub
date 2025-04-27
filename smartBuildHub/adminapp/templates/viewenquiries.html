@@ -1,0 +1,57 @@
+{% extends 'adminbase.html' %}
+{% block admin %}
+{% load static  %}
+
+<div class="row my-4">
+    <div class="col-sm-12">
+        <h2 class="text-center mb-5">View Enquiries</h2>
+        <div class="table-responsive-xl mt-4">
+            <table class="table border-2 text-nowrap mb-0">
+                <thead>
+                <tr>
+                    <th class="font-weight-semi-bold border-top-0 py-2">S.No</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Name</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Email</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Contact No</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Subject</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Message</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Date</th>
+                    <th class="font-weight-semi-bold border-top-0 py-2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for e in enq %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{e.name}}</td>
+                    <td>{{e.email}}</td>
+                    <td>{{e.contactno}}</td>
+                    <td>{{e.subject}}</td>
+                    <td>{{e.message}}</td>
+                    <td>{{e.enqdate}}</td>
+                    <td class="py-3">
+                        <div class="position-relative">
+                            <a class="link-dark d-inline-block" href="#">
+                                <i class="gd-pencil icon-text"></i>
+                            </a>
+                            <a class="link-dark d-inline-block" href="#">
+                                <i class="gd-trash icon-text"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+                </tbody>
+            </table>
+            <div class="card-footer d-block d-md-flex align-items-center d-print-none">
+                <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div>
+
+                <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination"><ul class="pagination justify-content-end font-weight-semi-bold mb-0">				<li class="page-item">				<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous"><i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				</li><li class="page-item d-none d-md-block"><a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a></li><li class="page-item">				<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next"><i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				</li>				</ul></nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

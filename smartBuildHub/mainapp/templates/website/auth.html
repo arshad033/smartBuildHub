@@ -94,7 +94,7 @@
      </form>
       
       <!-- Sign Up Form -->
-      <form action="{% url 'signcode' %}" id="signup-form" class="hidden" method="POST">
+      <form action="" id="signup-form" class="hidden" method="POST">
         {% csrf_token %}
         <h3 class="text-2xl font-bold text-gray-800 mb-6">Create Account</h3>
         
@@ -113,6 +113,15 @@
         <div class="input-effect">
           <input type="email" name="email" id="signup-email" placeholder=" " class="focus:ring-0" />
           <label for="signup-email">Email Address</label>
+        </div>
+        <div class="relative mb-6">
+        <label for="userType" class="text-gray-500 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-blue-500">User Type</label>
+          <select name="userType" id="userType" class="peer w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-0 focus:border-blue-500 pr-10">
+            <option value="homeowner">Home Owner</option>
+            <option value="contractor">Contractor</option>
+            <option value="architecture">Architecture</option>
+            <option value="supplier">Supplier</option>
+          </select>
         </div>
         
         <div class="input-effect">

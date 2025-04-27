@@ -40,6 +40,7 @@ def logcode(request):
             user = LoginInfo.objects.get(username=username,password=password)
             if user is not None:
                 if user.usertype == "admin":
+                    request.session['adminid'] = user.username
                     return redirect('admindash')
         except LoginInfo.DoesNotExist:
             messages.error(request,'Invalid Credentials')
@@ -53,4 +54,13 @@ def signcode(request):
         LastName = request.POST.get('lastName')
         email = request.POST.get('email')
         password = request.POST.get('password')
-         
+        userType = request.POST.get('userType')
+        
+        LoginInfo.objects.create(firstName=firstName,
+                               LastName=LastName,
+                               email=email,
+                               password=password,)
+        messages.success(request," User Register Success")
+        return redirect('login')
+    else:
+        return redirect('signup')
