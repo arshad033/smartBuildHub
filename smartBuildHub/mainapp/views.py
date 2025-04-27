@@ -46,3 +46,11 @@ def logcode(request):
             return redirect('login')
     else:
         return redirect('login')
+
+def signcode(request):
+    if request.method == "POST":
+        firstName = request.POST.get('firstName')
+        LastName = request.POST.get('lastName')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+         

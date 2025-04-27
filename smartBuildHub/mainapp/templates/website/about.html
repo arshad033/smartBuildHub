@@ -2,8 +2,301 @@
 {% load static tailwind_tags %}
 {% load static %}
 
-{% block title %} Home page {% endblock %}
+{% block title %}About Us - SmartBuildHub{% endblock %}
+{% block style %}
+<style>
+    /* Refined, professional animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes scaleIn {
+        from { 
+            opacity: 0;
+            transform: scale(0.9); 
+        }
+        to { 
+            opacity: 1;
+            transform: scale(1); 
+        }
+    }
+    
+    @keyframes borderPulse {
+        0% { border-color: rgba(249, 115, 22, 0.4); }
+        50% { border-color: rgba(249, 115, 22, 0.8); }
+        100% { border-color: rgba(249, 115, 22, 0.4); }
+    }
+    
+    .fade-in-up {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.8s ease forwards;
+    }
+    
+    .scale-in {
+        opacity: 0;
+        animation: scaleIn 0.7s ease forwards;
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-600 { animation-delay: 0.6s; }
+    
+    .value-card {
+        transition: all 0.3s ease;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-bottom: 3px solid #f97316;
+    }
+    
+    .stat-card {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border-bottom: 3px solid #f97316;
+    }
+    
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+        z-index: -1;
+    }
+    
+    .stat-card:hover {
+        animation: borderPulse 2s infinite;
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+    
+    .hero-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<h1>about page</h1>
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-orange-500 to-orange-700 text-white py-24 relative overflow-hidden hero-pattern">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+        <div class="flex flex-col items-center text-center">
+            <h1 class="text-5xl text-orange-500 md:text-6xl font-bold mb-6 fade-in-up">About SmartBuildHub</h1>
+            <div class="w-20 h-1 bg-white mb-8 fade-in delay-200"></div>
+            <p class="text-xl max-w-3xl fade-in-up delay-300">Revolutionizing the construction industry with innovative smart building solutions and sustainable practices.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col items-center mb-16">
+            <span class="text-orange-500 font-semibold mb-2 fade-in-up">WHO WE ARE</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 fade-in-up delay-100">Our Mission</h2>
+            <div class="w-16 h-1 bg-orange-500 mb-10 fade-in delay-200"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center fade-in-up delay-300">
+                At SmartBuildHub, we're committed to transforming the future of construction through cutting-edge technology, sustainable practices, and unparalleled expertise. We believe in creating buildings that are not just structures, but intelligent ecosystems that enhance lives.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="stat-card bg-orange-50 p-8 rounded-lg text-center scale-in delay-100">
+                <div class="text-4xl font-bold text-orange-600 mb-2 counter">250+</div>
+                <div class="text-gray-700 font-medium">Projects Completed</div>
+            </div>
+            <div class="stat-card bg-orange-50 p-8 rounded-lg text-center scale-in delay-200">
+                <div class="text-4xl font-bold text-orange-600 mb-2 counter">30+</div>
+                <div class="text-gray-700 font-medium">Years Experience</div>
+            </div>
+            <div class="stat-card bg-orange-50 p-8 rounded-lg text-center scale-in delay-300">
+                <div class="text-4xl font-bold text-orange-600 mb-2 counter">98%</div>
+                <div class="text-gray-700 font-medium">Client Satisfaction</div>
+            </div>
+            <div class="stat-card bg-orange-50 p-8 rounded-lg text-center scale-in delay-400">
+                <div class="text-4xl font-bold text-orange-600 mb-2 counter">42</div>
+                <div class="text-gray-700 font-medium">Industry Awards</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/2 fade-in-up">
+                <span class="text-orange-500 font-semibold mb-2 block">OUR JOURNEY</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
+                <div class="w-16 h-1 bg-orange-500 mb-8"></div>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Founded in 2010, SmartBuildHub began with a simple vision: to integrate smart technology into every aspect of construction and building management. What started as a small team of innovators has grown into an industry-leading company.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Over the years, we've pioneered numerous building technologies that have revolutionized how structures are designed, built, and maintained. Our commitment to sustainability and innovation has earned us recognition as one of the most forward-thinking companies in the construction sector.
+                </p>
+            </div>
+            <div class="md:w-1/2 fade-in-up delay-200">
+                <div class="bg-white p-3 rounded-lg shadow-xl transform -rotate-1 transition-all hover:rotate-0 duration-300">
+                    <img src="{% static 'img/smartBuildHubOffice.jpg' %}" alt="SmartBuildHub Office" class="w-full h-auto rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values -->
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col items-center mb-16">
+            <span class="text-orange-500 font-semibold mb-2 fade-in-up">WHAT DRIVES US</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 fade-in-up delay-100">Our Core Values</h2>
+            <div class="w-16 h-1 bg-orange-500 mb-10 fade-in delay-200"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="value-card bg-white p-8 rounded-lg shadow-md scale-in delay-100">
+                <div class="text-4xl text-orange-500 mb-6">🌱</div>
+                <h3 class="text-xl font-bold mb-4">Sustainability</h3>
+                <p class="text-gray-600">We prioritize eco-friendly materials and energy-efficient designs in every project we undertake.</p>
+            </div>
+            
+            <div class="value-card bg-white p-8 rounded-lg shadow-md scale-in delay-200">
+                <div class="text-4xl text-orange-500 mb-6">💡</div>
+                <h3 class="text-xl font-bold mb-4">Innovation</h3>
+                <p class="text-gray-600">We constantly push boundaries with cutting-edge technology and forward-thinking solutions.</p>
+            </div>
+            
+            <div class="value-card bg-white p-8 rounded-lg shadow-md scale-in delay-300">
+                <div class="text-4xl text-orange-500 mb-6">🤝</div>
+                <h3 class="text-xl font-bold mb-4">Collaboration</h3>
+                <p class="text-gray-600">We foster strong relationships with clients, partners, and communities to create lasting impact.</p>
+            </div>
+            
+            <div class="value-card bg-white p-8 rounded-lg shadow-md scale-in delay-400">
+                <div class="text-4xl text-orange-500 mb-6">✅</div>
+                <h3 class="text-xl font-bold mb-4">Excellence</h3>
+                <p class="text-gray-600">We maintain the highest standards in every aspect of our work and never compromise on quality.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add the visible class which will trigger the animation
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in-up, .fade-in, .scale-in').forEach(el => {
+            observer.observe(el);
+            // Add a class that will control when the animation plays
+            el.classList.add('observed');
+        });
+        
+        // Counter animation for statistics
+        const counters = document.querySelectorAll('.counter');
+        
+        counters.forEach(counter => {
+            const updateCount = () => {
+                // Extract the original text to preserve symbols
+                const originalText = counter.getAttribute('data-original-text');
+                
+                // Determine if there are any symbols we need to preserve
+                const hasPlus = originalText.includes('+');
+                const hasPercent = originalText.includes('%');
+                
+                // Extract just the numeric value from the target
+                const target = counter.getAttribute('data-target');
+                
+                // Get current count (removing any non-numeric characters)
+                const count = +counter.innerText.replace(/[^\d.-]/g, '') || 0;
+                
+                const speed = 1000; // Animation speed in milliseconds
+                const inc = target / speed * 10;
+                
+                if (count < target) {
+                    let newValue = Math.ceil(count + inc);
+                    
+                    // Add back the appropriate symbols
+                    if (hasPlus) {
+                        counter.innerText = newValue + '+';
+                    } else if (hasPercent) {
+                        counter.innerText = newValue + '%';
+                    } else {
+                        counter.innerText = newValue;
+                    }
+                    
+                    setTimeout(updateCount, 10);
+                } else {
+                    // Ensure we end with the exact original text
+                    counter.innerText = originalText;
+                }
+            };
+            
+            // Start the counter animation when element is in view
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Store the original text including any symbols
+                        const originalText = counter.innerText;
+                        counter.setAttribute('data-original-text', originalText);
+                        
+                        // Extract just the numeric value
+                        const numericValue = parseInt(originalText.replace(/[^\d.-]/g, ''));
+                        counter.setAttribute('data-target', numericValue);
+                        
+                        // Start from zero
+                        counter.innerText = '0';
+                        updateCount();
+                        statObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statObserver.observe(counter);
+        });
+    });
+</script>
 {% endblock %}
