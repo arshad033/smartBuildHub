@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.shortcuts import render,redirect
 from .models import Enquiry,LoginInfo ,User
 from django.contrib import messages
