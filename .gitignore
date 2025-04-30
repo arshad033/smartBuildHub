@@ -11,7 +11,7 @@ __pycache__/
 .vscode/
 
 # Django files
-
+db.sqlite3
 
 # OS junk
 .DS_Store
