@@ -32,6 +32,9 @@ def projects_view(request):
 def login_view(request):
     return render(request,'website/auth.html')
 
+def signUp_view(request):
+    return render(request,'website/auth.html')
+
 def logcode(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -64,10 +67,11 @@ def signcode(request):
                                      username=email,
                                      password=password,)
             
-            User.objects.create(firstName=firstName,
+            User.objects.create(
+                                usertype=userType,
+                                firstName=firstName,
                                 lastName=lastName,
                                 email=email,
-                                usertype=userType,
                                 password=password,)
             
             messages.success(request, "User Register Success")
