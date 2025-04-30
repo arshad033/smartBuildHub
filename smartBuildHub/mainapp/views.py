@@ -35,23 +35,29 @@ def login_view(request):
 def signUp_view(request):
     return render(request,'website/auth.html')
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import LoginInfo  # ensure this import exists
+
 def logcode(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
         try:
-            user = LoginInfo.objects.get(username=username,password=password)
-            if user is not None:
-                if user.usertype == "admin":
-                    request.session['adminid'] = user.username
-                    return redirect('admindash')
+            user = LoginInfo.objects.get(username=username, password=password)
+            if user.usertype == "admin":
+                request.session['adminid'] = user.username
+                return redirect('admindash')
+            elif user.usertype == "homeowner":
+                return redirect('index')
+            else:
+                messages.error(request, 'Invalid user type.')
+                return redirect('login')
         except LoginInfo.DoesNotExist:
-            messages.error(request,'Invalid Credentials')
+            messages.error(request, 'Invalid Credentials')
             return redirect('login')
     else:
         return redirect('login')
-
-from django.db import IntegrityError
 
 def signcode(request):
     if request.method == "POST":
