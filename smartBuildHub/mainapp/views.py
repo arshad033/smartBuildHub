@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Enquiry,LoginInfo
+from .models import Enquiry,LoginInfo ,User
 from django.contrib import messages
 def home(request):
     return render(request, 'website/index.html')
@@ -48,19 +48,38 @@ def logcode(request):
     else:
         return redirect('login')
 
+from django.db import IntegrityError
+
 def signcode(request):
     if request.method == "POST":
         firstName = request.POST.get('firstName')
-        LastName = request.POST.get('lastName')
+        lastName = request.POST.get('lastName')
         email = request.POST.get('email')
         password = request.POST.get('password')
         userType = request.POST.get('userType')
         
-        LoginInfo.objects.create(firstName=firstName,
-                               LastName=LastName,
-                               email=email,
-                               password=password,)
-        messages.success(request," User Register Success")
-        return redirect('login')
+        try:
+            # Creating LoginInfo and User objects
+            LoginInfo.objects.create(usertype=userType,
+                                     username=email,
+                                     password=password,)
+            
+            User.objects.create(firstName=firstName,
+                                lastName=lastName,
+                                email=email,
+                                usertype=userType,
+                                password=password,)
+            
+            messages.success(request, "User Register Success")
+            return redirect('login')
+
+        except IntegrityError as e:
+            # Catching database integrity errors (e.g., unique constraint violations)
+            messages.error(request, "A user with this email already exists.")
+            return redirect('signup')
+        except Exception as e:
+            # Catching other unexpected errors
+            messages.error(request, f"An error occurred: {str(e)}")
+            return redirect('signup')
     else:
         return redirect('signup')
