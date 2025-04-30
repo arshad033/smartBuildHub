@@ -18,7 +18,7 @@ class User(models.Model):
     USER_TYPES = (
         ('supplier', 'Supplier'),
         ('contractor', 'Contractor'),
-        ('homeOwner', 'HomeOwner'),
+        ('homeowner', 'homeowner'),
         ('admin', 'Admin'),
         ('architecture', 'Architecture'),  
         # Add more types if needed
