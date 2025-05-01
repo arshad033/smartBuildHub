@@ -131,3 +131,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'mainapp/static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default
+)

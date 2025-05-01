@@ -2,6 +2,8 @@ from django.db import IntegrityError
 from django.shortcuts import render,redirect
 from .models import Enquiry,LoginInfo ,User
 from django.contrib import messages
+from django.contrib.auth.hashers import check_password, make_password
+
 def home(request):
     return render(request, 'website/index.html')
 
@@ -36,30 +38,53 @@ def login_view(request):
 def signUp_view(request):
     return render(request,'website/auth.html')
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import LoginInfo  # ensure this import exists
+def profile_view(request):
+    user_id = request.session.get('user_id')
+    if not user_id:
+        return redirect('login')
+
+    user = LoginInfo.objects.get(id=user_id)
+    return render(request, 'website/profile.html', {'user': user})
+
 
 def logcode(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+
         try:
-            user = LoginInfo.objects.get(username=username, password=password)
-            if user.usertype == "admin":
-                request.session['adminid'] = user.username
-                return redirect('admindash')
-            elif user.usertype == "homeowner":
-                return redirect('index')
+            # Get the user from the database
+            user = LoginInfo.objects.get(username=username)
+
+            # Check if the password matches the hashed password stored in the database
+            if check_password(password, user.password):
+                # Password is correct, authenticate the user
+                request.session['user_id'] = user.id  # Store user ID in session
+                # Example: checking usertype
+                if user.usertype == "supplier":
+                    request.session['supplier'] = user.username
+                    return redirect('index')
+                elif user.usertype == "homeowner":
+                    request.session['homeowner'] = user.username
+                    return redirect('index')
+                elif user.usertype == "contractor":
+                    request.session['contractor'] = user.username
+                    return redirect('index')
+                elif user.usertype == "architecture":
+                    request.session['architecture'] = user.username
+                    return redirect('index')
+                else:
+                    messages.error(request, 'Invalid user type.')
             else:
-                messages.error(request, 'Invalid user type.')
-                return redirect('login')
+                messages.error(request, 'Invalid Credentials')
         except LoginInfo.DoesNotExist:
             messages.error(request, 'Invalid Credentials')
-            return redirect('login')
-    else:
+        
         return redirect('login')
+    else:
+        return redirect('login')  
 
+    
 def signcode(request):
     if request.method == "POST":
         firstName = request.POST.get('firstName')
@@ -69,17 +94,23 @@ def signcode(request):
         userType = request.POST.get('userType')
         
         try:
-            # Creating LoginInfo and User objects
-            LoginInfo.objects.create(usertype=userType,
-                                     username=email,
-                                     password=password,)
+            # Hash the password before storing it in the database
+            hashed_password = make_password(password)
+
+            # Creating LoginInfo and User objects with the hashed password
+            LoginInfo.objects.create(
+                usertype=userType,
+                username=email,
+                password=hashed_password,
+            )
             
             User.objects.create(
-                                usertype=userType,
-                                firstName=firstName,
-                                lastName=lastName,
-                                email=email,
-                                password=password,)
+                usertype=userType,
+                firstName=firstName,
+                lastName=lastName,
+                email=email,
+                password=hashed_password,  # Store the hashed password here as well
+            )
             
             messages.success(request, "User Register Success")
             return redirect('login')
@@ -94,3 +125,11 @@ def signcode(request):
             return redirect('signup')
     else:
         return redirect('signup')
+    
+def userlogout(request):
+    if 'homeowner' in request.session:
+        del request.session['homeowner']
+        return redirect('index')
+    else:
+        messages.error(request,'Login first')
+        return redirect('login')
