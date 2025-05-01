@@ -27,7 +27,7 @@
               <img class="h-16 logo" src="{% static 'img/smartbuild_Logo_dark.png' %}" alt="Logo">
             </a>
           </div>
-          
+    
           <!-- Navigation links - hidden on mobile -->
           <div class="hidden md:block">
             <div class="ml-10 flex items-center space-x-6">
@@ -38,13 +38,42 @@
               <a href="/contact/" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">Contact</a>
             </div>
           </div>
+    
+          <!-- Right side profile section with dropdown -->
+          <!-- Right side profile section with dropdown (no icon) -->
+          {% if request.session.homeowner or request.session.supplier or request.session.contractor or request.session.architecture %}
+          <!-- Profile Section -->
+          <div class="hidden md:block" x-data="{ openDropdown: false }">
+            <div class="ml-4 flex items-center md:ml-6 relative">
+              <button 
+                @click="openDropdown = !openDropdown" 
+                class="flex items-center space-x-2 text-white focus:outline-none"
+              >
+                <img class="w-8 h-8 rounded-full object-cover" src="/static/img/profile.jpg" alt="Profile Picture">
+                <span class="text-sm font-medium">{{ request.session.homeowner }}</span>
+              </button>
           
-          <!-- Right side buttons -->
-          <div class="hidden md:block">
-            <div class="ml-4 flex items-center md:ml-6">
-              <a href="/auth/" class="btn-signin px-4 py-2 mr-4 text-sm font-medium text-white border border-orange-500 rounded-md transition-all duration-300">Sign In</a>
+              <!-- Dropdown Menu -->
+              <div 
+                x-show="openDropdown" 
+                @click.away="openDropdown = false" 
+                x-transition 
+                class="absolute right-0 w-70 bg-white rounded-md shadow-lg py-2 z-50" style="margin-top: 13rem;"
+              >
+                <a href="/profile/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                <a href="/profile/update/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Update Profile</a>
+                <a href="{% url 'userlogout' %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Logout</a>
+              </div>
             </div>
           </div>
+          {% else %}
+          <!-- Sign In Button -->
+          <div class="pt-4 pb-3 border-gray-700">
+            <div class="flex items-center px-3">
+              <a href="/auth/" class="block px-4 py-2 text-base font-medium text-white bg-orange-400 hover:bg-orange-500 rounded-md w-full text-center transition-all duration-300">Sign In</a>
+            </div>
+          </div>
+          {% endif %}
           
           <!-- Mobile menu button with animation -->
           <div class="flex md:hidden">
@@ -59,7 +88,7 @@
           </div>
         </div>
       </div>
-  
+    
       <!-- Mobile menu with animation -->
       <div 
         x-show="isOpen" 
@@ -84,6 +113,7 @@
         </div>
       </div>
     </nav>
+    
   </header>
 
   <main class="min-h-screen">
