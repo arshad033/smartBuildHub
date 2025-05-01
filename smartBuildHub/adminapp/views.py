@@ -38,34 +38,20 @@ def viewenq(request):
 def viewHomeOwners(request):
         if 'adminid' in request.session:
             adminid = request.session.get('adminid')
-            return render(request,'viewenquiries.html')
+            return render(request,'viewHomeOwners.html')
         else:
             messages.error(request,'Login first')
             return redirect('login')
-        
-        
-def view_users(request):
-    if 'adminid' in request.session:
-        adminid = request.session.get('adminid')
-        users = User.objects.all()
-        context = {
-            'users': users,
-            'adminid': adminid
-        }
-        return render(request, 'viewusers.html', context)
-    else:
-        messages.error(request, 'Login first')
-        return redirect('login')
     
 def viewContractor(request):
     if 'adminid' in request.session:
         adminid = request.session.get('adminid')
-        contractors = User.objects.filter(user_type='contractor')
+        contractors = User.objects.filter(usertype='contractor')
         context = {
             'contractors': contractors,
             'adminid': adminid
         }
-        return render(request, 'viewcontractors.html', context)
+        return render(request, 'viewContractor.html', context)
     else:
         messages.error(request, 'Login first')
         return redirect('login')
@@ -74,12 +60,12 @@ def viewContractor(request):
 def viewSuppliers(request):
     if 'adminid' in request.session:
         adminid = request.session.get('adminid')
-        suppliers = User.objects.filter(user_type='supplier')
+        suppliers = User.objects.filter(usertype='supplier')
         context = {
             'suppliers': suppliers,
             'adminid': adminid
         }
-        return render(request, 'viewsuppliers.html', context)
+        return render(request, 'viewSuppliers.html', context)
     else:
         messages.error(request, 'Login first')
         return redirect('login')
@@ -87,7 +73,7 @@ def viewSuppliers(request):
 def viewArchitecture(request):
     if 'adminid' in request.session:
         adminid = request.session.get('adminid')
-        architectures = User.objects.filter(user_type='architecture')
+        architectures = User.objects.filter(usertype='architecture')
         context = {
             'architectures': architectures,
             'adminid': adminid
