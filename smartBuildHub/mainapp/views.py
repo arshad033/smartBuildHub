@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from .models import Enquiry,LoginInfo ,User
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password, make_password
-
+from .form import ProfileUpdateForm
 def home(request):
     return render(request, 'website/index.html')
 
@@ -39,11 +39,14 @@ def signUp_view(request):
     return render(request,'website/auth.html')
 
 def profile_view(request):
-    user_id = request.session.get('user_id')
-    if not user_id:
+    username = request.session.get('username')  # Assuming the username is stored in the session
+    if not username:
         return redirect('login')
 
-    user = LoginInfo.objects.get(id=user_id)
+    try:
+        user = User.objects.get(email=username)
+    except User.DoesNotExist:
+        return redirect('login')
     return render(request, 'website/profile.html', {'user': user})
 
 
@@ -59,19 +62,23 @@ def logcode(request):
             # Check if the password matches the hashed password stored in the database
             if check_password(password, user.password):
                 # Password is correct, authenticate the user
-                request.session['user_id'] = user.id  # Store user ID in session
+                request.session['username'] = username  # Store user ID in session
                 # Example: checking usertype
                 if user.usertype == "supplier":
                     request.session['supplier'] = user.username
+                    request.session.set_expiry(86400)
                     return redirect('index')
                 elif user.usertype == "homeowner":
                     request.session['homeowner'] = user.username
+                    request.session.set_expiry(86400)
                     return redirect('index')
                 elif user.usertype == "contractor":
                     request.session['contractor'] = user.username
+                    request.session.set_expiry(86400)
                     return redirect('index')
                 elif user.usertype == "architecture":
                     request.session['architecture'] = user.username
+                    request.session.set_expiry(86400)
                     return redirect('index')
                 else:
                     messages.error(request, 'Invalid user type.')
@@ -127,9 +134,32 @@ def signcode(request):
         return redirect('signup')
     
 def userlogout(request):
-    if 'homeowner' in request.session:
-        del request.session['homeowner']
+    user_keys = ['homeowner', 'supplier', 'contractor', 'architecture']
+    
+    logged_out = False
+    for key in user_keys:
+        if key in request.session:
+            del request.session[key]
+            logged_out = True
+
+    if logged_out:
         return redirect('index')
     else:
-        messages.error(request,'Login first')
+        messages.error(request, 'Login first')
         return redirect('login')
+
+
+# views.py
+def update_profile(request):
+    username = request.session.get('username')
+    if not username:
+        return redirect('login')
+
+    user = User.objects.get(email=username)
+    form = ProfileUpdateForm(request.POST or None, request.FILES or None, instance=user)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('profile')  # redirect to your profile page
+
+    return render(request, 'website/updateProfile.html', {'form': form, 'user': user})
