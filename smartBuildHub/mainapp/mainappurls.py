@@ -12,6 +12,7 @@ urlpatterns = [
     path('logcode/', views.logcode, name='logcode'),
     path('signcode/', views.signcode, name='signcode'),
     path('profile/', views.profile_view, name='profile'),
+    path('updateProfile/', views.update_profile, name='updateProfile'),
     path('userlogout/', views.userlogout, name='userlogout'),
     
 ]
